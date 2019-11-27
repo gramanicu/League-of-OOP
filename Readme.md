@@ -6,5 +6,6 @@ This is a project that represents the 2nd and 3rd homework for the Object-Orient
 
 - [League of OOP](#league-of-oop)
   - [Table of Contents](#table-of-contents)
-
+  - [Game Details](#game-details)
+    - [Map](#map)
 © 2019 Grama Nicolae, 322CA
