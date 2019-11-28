@@ -38,10 +38,33 @@ public abstract class Hero {
     public abstract void accept(Ability ability);
 
     /**
-     * Kills the hero.
+     * Check if the hero is dead.
      */
-    public void kill() {
-        this.hp = 0;
+    public boolean isDead() {
+        return hp <= 0;
+    }
+
+    /**
+     * Method used to determine what the target is.
+     * @param target
+     */
+    public void attack(final Hero target) {
+        switch (target.getType()) {
+            case KNIGHT:
+                attack(((Knight) target));
+                break;
+            case PYROMANCER:
+                attack(((Pyromancer) target));
+                break;
+            case ROGUE:
+                attack(((Rogue) target));
+                break;
+            case WIZARD:
+                attack(((Wizard) target));
+                break;
+            default:
+                return;
+        }
     }
 
     /**
@@ -172,6 +195,37 @@ public abstract class Hero {
     public void move(final Movement direction) {
         if (statusEffect.canMove()) {
             position.move(direction);
+        }
+    }
+
+    /**
+     * Returns the info about the hero.
+     * @return The information
+     */
+    public String getStats() {
+        char race;
+        switch (type) {
+            case KNIGHT:
+                race = 'K';
+                break;
+            case PYROMANCER:
+                race = 'P';
+                break;
+            case ROGUE:
+                race = 'R';
+                break;
+            case WIZARD:
+                race = 'W';
+                break;
+            default:
+                race = ' ';
+        }
+
+        if (isDead()) {
+            return String.format("%c %s", race, "is dead");
+        } else {
+            return String.format("%c %d %d %d %d %d", race,
+                    level, xp, hp, position.getY(), position.getX());
         }
     }
 }

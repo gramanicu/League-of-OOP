@@ -12,5 +12,7 @@ public final class Main {
      */
     public static void main(final String[] args) {
         Game.getInstance().load(args[0]);
+        Game.getInstance().start();
+        Game.getInstance().results(args[1]);
     }
 }

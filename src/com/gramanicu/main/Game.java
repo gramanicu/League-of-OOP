@@ -113,18 +113,18 @@ public final class Game {
 
     // This algorithm works because we know only two players can reach the same spot
     private void fight() {
-        for (Hero player : players) {
-            for (Hero otherPlayer : players) {
-                if (player != otherPlayer) {
-                    if (player.getPosition() == otherPlayer.getPosition()) {
-                        fight(player, otherPlayer);
-                    }
+        for (int i = 0; i < players.size() - 1; i++) {
+            for (int j = i + 1; j < players.size(); j++) {
+                if (players.get(i).getPosition().equals(players.get(j).getPosition())) {
+                    fight(players.get(i), players.get(j));
                 }
             }
         }
     }
 
     private void fight(final Hero first, final Hero second) {
+        first.attack(second);
+        second.attack(first);
     }
 
     /**
@@ -136,6 +136,16 @@ public final class Game {
             fight();
 
             round++;
+        }
+    }
+
+    /**
+     * Print the player stats to output.
+     * @param output The output file
+     */
+    public void results(final String output) {
+        for (Hero player : players) {
+            System.out.println(player.getStats());
         }
     }
 }

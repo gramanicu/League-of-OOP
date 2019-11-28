@@ -1,5 +1,7 @@
 package com.gramanicu.maps;
 
+import java.util.Objects;
+
 public class Point {
     private int xPos;
     private int yPos;
@@ -63,5 +65,28 @@ public class Point {
      */
     public int getY() {
         return yPos;
+    }
+
+
+    /**
+     * Used to compare two points.
+     * @param obj The other point
+     * @return If they are equal
+     */
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj != null && getClass() == obj.getClass()) {
+            Point q = (Point) obj;
+            return xPos == q.xPos && yPos == q.yPos;
+        }
+        return false;
+    }
+
+    /**
+     * Used to solve a checkstyle problem.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(xPos, yPos);
     }
 }
