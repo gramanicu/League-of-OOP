@@ -27,17 +27,17 @@ public final class Map {
      * @param point The location
      * @return The terrain type
      */
-    public Terrain getTerrain(final Point point) {
+    public TerrainType getTerrain(final Point point) {
         char type = terrain[point.getY()][point.getX()];
         switch (Character.toUpperCase(type)) {
             case 'L':
-                return Terrain.LAND;
+                return TerrainType.LAND;
             case 'V':
-                return Terrain.VOLCANIC;
+                return TerrainType.VOLCANIC;
             case 'D':
-                return Terrain.DESERT;
+                return TerrainType.DESERT;
             case 'W':
-                return Terrain.WOODS;
+                return TerrainType.WOODS;
             default:
                 throw new IllegalStateException("Unexpected value: " + type);
         }

@@ -13,6 +13,8 @@ import java.util.Scanner;
 public final class Game {
     private ArrayList<Hero> players;
     private ArrayList<ArrayList<Movement>> playerMovements;
+    private int rounds;
+    private int round;
     private static Game instance = null;
 
     private Game() {
@@ -65,6 +67,7 @@ public final class Game {
             }
 
             int roundCount = input.nextInt();
+            rounds = roundCount;
 
             for (int i = 0; i < roundCount; i++) {
                 String row = input.next();
@@ -95,11 +98,44 @@ public final class Game {
                     roundMovements.add(actualMove);
                 }
                 playerMovements.add(roundMovements);
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    private void movePlayers() {
+        for (int playerID = 0; playerID < players.size(); playerID++) {
+            players.get(playerID).move(playerMovements.get(round).get(playerID));
+        }
+    }
+
+    // This algorithm works because we know only two players can reach the same spot
+    private void fight() {
+        for (Hero player : players) {
+            for (Hero otherPlayer : players) {
+                if (player != otherPlayer) {
+                    if (player.getPosition() == otherPlayer.getPosition()) {
+                        fight(player, otherPlayer);
+                    }
+                }
+            }
+        }
+    }
+
+    private void fight(final Hero first, final Hero second) {
+    }
+
+    /**
+     * Start the game.
+     */
+    public void start() {
+        while (round != rounds) {
+            movePlayers();
+            fight();
+
+            round++;
+        }
     }
 }

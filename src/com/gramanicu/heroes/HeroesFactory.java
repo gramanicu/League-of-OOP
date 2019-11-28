@@ -41,13 +41,13 @@ public final class HeroesFactory {
 
         switch (heroType) {
             case KNIGHT:
-                return new Knight(500, 50, position);
+                return new Knight(position);
             case PYROMANCER:
-                return null;
+                return new Pyromancer(position);
             case ROGUE:
-                return null;
+                return new Rogue(position);
             case WIZARD:
-                return null;
+                return new Wizard(position);
             default:
                 throw new IllegalStateException("Unexpected value: " + type);
         }

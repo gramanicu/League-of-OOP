@@ -1,19 +1,17 @@
 package com.gramanicu.heroes;
 
 import com.gramanicu.abilities.Ability;
-import com.gramanicu.abilities.Execute;
-import com.gramanicu.abilities.Slam;
 import com.gramanicu.maps.Point;
 import com.gramanicu.maps.TerrainType;
 
-public class Knight extends Hero {
-    private static final int BASE_HP = 900;
-    private static final int SCALING_HP = 80;
+public class Rogue extends Hero {
+    private static final int BASE_HP = 600;
+    private static final int SCALING_HP = 40;
     public static final int TERRAIN_MODIFIER = 15;
-    public static final TerrainType HOME_TERRAIN = TerrainType.LAND;
+    public static final TerrainType HOME_TERRAIN = TerrainType.WOODS;
 
-    public Knight(final Point position) {
-        super(HeroType.KNIGHT, BASE_HP, SCALING_HP, position);
+    public Rogue(final Point position) {
+        super(HeroType.ROGUE, BASE_HP, SCALING_HP, position);
     }
 
     /**
@@ -23,7 +21,7 @@ public class Knight extends Hero {
      */
     @Override
     public void accept(final Ability ability) {
-        ability.affect(this);
+
     }
 
     /**
@@ -33,10 +31,7 @@ public class Knight extends Hero {
      */
     @Override
     public void attack(final Knight target) {
-        Execute execute = new Execute(this);
-        execute.affect(target);
-        Slam slam = new Slam(this);
-        slam.affect(target);
+
     }
 
     /**
@@ -46,10 +41,7 @@ public class Knight extends Hero {
      */
     @Override
     public void attack(final Pyromancer target) {
-        Execute execute = new Execute(this);
-        execute.affect(target);
-        Slam slam = new Slam(this);
-        slam.affect(target);
+
     }
 
     /**
@@ -59,10 +51,7 @@ public class Knight extends Hero {
      */
     @Override
     public void attack(final Wizard target) {
-        Execute execute = new Execute(this);
-        execute.affect(target);
-        Slam slam = new Slam(this);
-        slam.affect(target);
+
     }
 
     /**
@@ -72,10 +61,7 @@ public class Knight extends Hero {
      */
     @Override
     public void attack(final Rogue target) {
-        Execute execute = new Execute(this);
-        execute.affect(target);
-        Slam slam = new Slam(this);
-        slam.affect(target);
+
     }
 
     /**
@@ -83,12 +69,6 @@ public class Knight extends Hero {
      */
     @Override
     public int getTerrainBonus() {
-        if (getTerrain() == HOME_TERRAIN) {
-            return TERRAIN_MODIFIER;
-        } else {
-            return 0;
-        }
+        return 0;
     }
-
-
 }

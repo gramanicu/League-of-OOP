@@ -1,5 +1,5 @@
 package com.gramanicu.maps;
 
-public enum Terrain {
+public enum TerrainType {
     LAND, VOLCANIC, DESERT, WOODS
 }
