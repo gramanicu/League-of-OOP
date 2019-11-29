@@ -10,6 +10,7 @@ public abstract class Ability {
     private static final float PERCENT = 100.0f;
 
     protected static Hero caster;
+    protected StatusEffect statusEffect = new StatusEffect();
 
     protected static int getPercentage(final int percent, final int of) {
         float res = ((float) percent) / PERCENT * ((float) of);

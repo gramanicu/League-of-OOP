@@ -15,8 +15,6 @@ public class Slam extends Ability {
     private static final int KNIGHT_BONUS = 20;
     private static final int STUN_DURATION = 1;
 
-    private StatusEffect statusEffect = new StatusEffect();
-
     public Slam(final Knight hero) {
         caster = hero;
     }

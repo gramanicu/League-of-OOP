@@ -1,6 +1,8 @@
 package heroes;
 
 import abilities.Ability;
+import abilities.Fireblast;
+import abilities.Ignite;
 import maps.Point;
 import maps.TerrainType;
 
@@ -21,47 +23,55 @@ public class Pyromancer extends Hero {
      */
     @Override
     public void accept(final Ability ability) {
-
+        ability.affect(this);
     }
 
     /**
      * Attack another hero.
-     *
      * @param target The targeted knight
      */
     @Override
     public void attack(final Knight target) {
-
+        Fireblast fireblast = new Fireblast(this);
+        fireblast.affect(target);
+        Ignite ignite = new Ignite(this);
+        ignite.affect(target);
     }
 
     /**
      * Attack another hero.
-     *
      * @param target The targeted pyromancer
      */
     @Override
     public void attack(final Pyromancer target) {
-
+        Fireblast fireblast = new Fireblast(this);
+        fireblast.affect(target);
+        Ignite ignite = new Ignite(this);
+        ignite.affect(target);
     }
 
     /**
      * Attack another hero.
-     *
      * @param target The targeted wizard
      */
     @Override
     public void attack(final Wizard target) {
-
+        Fireblast fireblast = new Fireblast(this);
+        fireblast.affect(target);
+        Ignite ignite = new Ignite(this);
+        ignite.affect(target);
     }
 
     /**
      * Attack another hero.
-     *
      * @param target The targeted rogue
      */
     @Override
     public void attack(final Rogue target) {
-
+        Fireblast fireblast = new Fireblast(this);
+        fireblast.affect(target);
+        Ignite ignite = new Ignite(this);
+        ignite.affect(target);
     }
 
     /**
@@ -69,6 +79,10 @@ public class Pyromancer extends Hero {
      */
     @Override
     public int getTerrainBonus() {
-        return 0;
+        if (getTerrain() == HOME_TERRAIN) {
+            return TERRAIN_MODIFIER;
+        } else {
+            return 0;
+        }
     }
 }

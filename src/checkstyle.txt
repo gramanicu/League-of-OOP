@@ -1,2 +1,4 @@
 Starting audit...
+[ERROR] /home/nicolae/College/temePOO/League-of-OOP/src/abilities/StatusEffect.java:54: First sentence should end with a period. [JavadocStyle]
 Audit done.
+Checkstyle ends with 1 errors.

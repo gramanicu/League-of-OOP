@@ -3,10 +3,17 @@ package abilities;
 import heroes.Hero;
 
 public class StatusEffect {
+    private static final float PERCENT = 100.0f;
+
     private StatusEffectType type;
     private int duration;
     private Hero target;
     private int amount;
+
+    protected static int getPercentage(final int percent, final int of) {
+        float res = ((float) percent) / PERCENT * ((float) of);
+        return Math.round(res);
+    }
 
     public StatusEffect() {
         type = StatusEffectType.NONE;
@@ -42,6 +49,14 @@ public class StatusEffect {
             type = StatusEffectType.NONE;
             amount = 0;
         }
+    }
+
+    /**
+     * Add the race bonus to the effect "amount"
+     * @param raceBonus The race bonus (%)
+     */
+    public void setRaceBonus(final int raceBonus) {
+        amount += getPercentage(raceBonus, amount);
     }
 
     /**
