@@ -196,6 +196,7 @@ public abstract class Hero {
         if (statusEffect.canMove()) {
             position.move(direction);
         }
+        statusEffect.apply();
     }
 
     /**

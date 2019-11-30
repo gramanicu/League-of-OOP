@@ -41,7 +41,8 @@ public class StatusEffect {
      */
     public void apply() {
         duration--;
-        if (type == StatusEffectType.OVERTIME_DMG) {
+        if (type == StatusEffectType.OVERTIME_DMG
+                || type == StatusEffectType.STUN_AND_DAMAGE) {
             target.takeResidualDamage(amount);
         }
 
@@ -63,6 +64,12 @@ public class StatusEffect {
      * @return Whether or not the player can move
      */
     public boolean canMove() {
-        return type == StatusEffectType.STUN;
+        switch (type) {
+            case STUN:
+            case STUN_AND_DAMAGE:
+                return false;
+            default:
+                return true;
+        }
     }
 }

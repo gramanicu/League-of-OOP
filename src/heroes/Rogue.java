@@ -1,6 +1,8 @@
 package heroes;
 
 import abilities.Ability;
+import abilities.Backstab;
+import abilities.Paralysis;
 import maps.Point;
 import maps.TerrainType;
 
@@ -21,7 +23,7 @@ public class Rogue extends Hero {
      */
     @Override
     public void accept(final Ability ability) {
-
+        ability.affect(this);
     }
 
     /**
@@ -31,7 +33,10 @@ public class Rogue extends Hero {
      */
     @Override
     public void attack(final Knight target) {
-
+        Backstab backstab = new Backstab(this);
+        backstab.affect(target);
+        Paralysis paralysis = new Paralysis(this);
+        paralysis.affect(target);
     }
 
     /**
@@ -41,7 +46,10 @@ public class Rogue extends Hero {
      */
     @Override
     public void attack(final Pyromancer target) {
-
+        Backstab backstab = new Backstab(this);
+        backstab.affect(target);
+        Paralysis paralysis = new Paralysis(this);
+        paralysis.affect(target);
     }
 
     /**
@@ -51,7 +59,10 @@ public class Rogue extends Hero {
      */
     @Override
     public void attack(final Wizard target) {
-
+        Backstab backstab = new Backstab(this);
+        backstab.affect(target);
+        Paralysis paralysis = new Paralysis(this);
+        paralysis.affect(target);
     }
 
     /**
@@ -61,7 +72,10 @@ public class Rogue extends Hero {
      */
     @Override
     public void attack(final Rogue target) {
-
+        Backstab backstab = new Backstab(this);
+        backstab.affect(target);
+        Paralysis paralysis = new Paralysis(this);
+        paralysis.affect(target);
     }
 
     /**
@@ -69,6 +83,10 @@ public class Rogue extends Hero {
      */
     @Override
     public int getTerrainBonus() {
-        return 0;
+        if (getTerrain() == HOME_TERRAIN) {
+            return TERRAIN_MODIFIER;
+        } else {
+            return 0;
+        }
     }
 }
