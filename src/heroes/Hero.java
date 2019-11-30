@@ -222,7 +222,7 @@ public abstract class Hero {
         }
 
         if (isDead()) {
-            return String.format("%c %s", race, " dead");
+            return String.format("%c %s", race, "dead");
         } else {
             return String.format("%c %d %d %d %d %d", race,
                     level, xp, hp, position.getY(), position.getX());

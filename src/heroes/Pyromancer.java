@@ -18,7 +18,6 @@ public class Pyromancer extends Hero {
 
     /**
      * Get affected by an ability.
-     *
      * @param ability The ability that will affect the hero
      */
     @Override

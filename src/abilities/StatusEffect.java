@@ -52,7 +52,7 @@ public class StatusEffect {
     }
 
     /**
-     * Add the race bonus to the effect "amount"
+     * Add the race bonus to the effect "amount".
      * @param raceBonus The race bonus (%)
      */
     public void setRaceBonus(final int raceBonus) {

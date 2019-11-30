@@ -18,10 +18,7 @@ public class Knight extends Hero {
 
     /**
      * Get affected by an ability.
-<<<<<<< HEAD
-=======
      *
->>>>>>> 7df00b33df6fcb1003d0f7314efa0b22c75a2d77
      * @param ability The ability that will affect the hero
      */
     @Override
@@ -31,10 +28,7 @@ public class Knight extends Hero {
 
     /**
      * Attack another hero.
-<<<<<<< HEAD
-=======
      *
->>>>>>> 7df00b33df6fcb1003d0f7314efa0b22c75a2d77
      * @param target The targeted knight
      */
     @Override
@@ -47,10 +41,7 @@ public class Knight extends Hero {
 
     /**
      * Attack another hero.
-<<<<<<< HEAD
-=======
      *
->>>>>>> 7df00b33df6fcb1003d0f7314efa0b22c75a2d77
      * @param target The targeted pyromancer
      */
     @Override
@@ -63,10 +54,7 @@ public class Knight extends Hero {
 
     /**
      * Attack another hero.
-<<<<<<< HEAD
-=======
      *
->>>>>>> 7df00b33df6fcb1003d0f7314efa0b22c75a2d77
      * @param target The targeted wizard
      */
     @Override
@@ -79,10 +67,7 @@ public class Knight extends Hero {
 
     /**
      * Attack another hero.
-<<<<<<< HEAD
-=======
      *
->>>>>>> 7df00b33df6fcb1003d0f7314efa0b22c75a2d77
      * @param target The targeted rogue
      */
     @Override
@@ -104,6 +89,4 @@ public class Knight extends Hero {
             return 0;
         }
     }
-
-
 }
