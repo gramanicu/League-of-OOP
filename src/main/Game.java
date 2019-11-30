@@ -124,8 +124,31 @@ public final class Game {
     }
 
     private void fight(final Hero first, final Hero second) {
+        boolean firstDead;
+        firstDead = first.isDead();
+        boolean secondDead;
+        secondDead = second.isDead();
+
         first.attack(second);
         second.attack(first);
+
+        boolean firstAfter;
+        firstAfter = first.isDead();
+        boolean secondAfter;
+        secondAfter = second.isDead();
+
+        // If someone died
+        if (firstAfter || secondAfter) {
+            if (!(firstAfter && secondAfter)) {
+                if (!firstDead && firstAfter) {
+                    second.won(first);
+                }
+
+                if (!secondDead && secondAfter) {
+                    first.won(second);
+                }
+            }
+        }
     }
 
     /**

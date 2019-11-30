@@ -19,6 +19,8 @@ public abstract class Hero {
 
     private static final int XP_THRESHOLD = 250;
     private static final int XP_SCALING = 50;
+    private static final int LVL_XP_BASE = 200;
+    private static final int LVL_XP_SCALING = 40;
 
     public Hero(final HeroType type, final int hp, final int hpScaling, final Point position) {
         this.type = type;
@@ -124,8 +126,37 @@ public abstract class Hero {
      */
     public void giveXP(final int amount) {
         xp += amount;
+        int oldLevel = level;
 
-        level = (xp - XP_THRESHOLD) / XP_SCALING;
+        level = Math.max(0, (xp - XP_THRESHOLD)) / XP_SCALING;
+
+        if (level != oldLevel) {
+            resetHP();
+        }
+    }
+
+    /**
+     * Gives the player max hp, after computing the max hp.
+     */
+    protected void resetHP() {
+        maxHp = getBaseHP() + getLevel() * getHpScaling();
+        hp = maxHp;
+    }
+
+    /**
+     * @return The starting hp of the hero
+     */
+    protected abstract int getBaseHP();
+
+    /**
+     * Give the winner his reward.
+     * @param defeated The defeated player
+     */
+    public void won(final Hero defeated) {
+        int xpToAdd = Math.max(0, LVL_XP_BASE
+                - (this.getLevel() - defeated.getLevel()) * LVL_XP_SCALING);
+
+        giveXP(xpToAdd);
     }
 
     /**

@@ -79,6 +79,14 @@ public class Knight extends Hero {
     }
 
     /**
+     * @return The starting hp of the hero
+     */
+    @Override
+    protected int getBaseHP() {
+        return BASE_HP;
+    }
+
+    /**
      * @return The terrain bonus for the hero
      */
     @Override
