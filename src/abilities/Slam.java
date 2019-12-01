@@ -9,11 +9,11 @@ import heroes.Wizard;
 public class Slam extends Ability {
     private static final int DAMAGE = 100;
     private static final int SCALING = 40;
-    private static final int PYROMANCER_BONUS = -10;
-    private static final int ROGUE_BONUS = -20;
-    private static final int WIZARD_BONUS = 5;
-    private static final int KNIGHT_BONUS = 20;
     private static final int STUN_DURATION = 1;
+    private static final float PYROMANCER_BONUS = 0.9f;
+    private static final float ROGUE_BONUS = 0.8f;
+    private static final float WIZARD_BONUS = 1.5f;
+    private static final float KNIGHT_BONUS = 1.2f;
 
     public Slam(final Knight hero) {
         caster = hero;

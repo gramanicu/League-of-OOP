@@ -12,6 +12,7 @@ public class Execute extends Ability {
     private static final float PERCENT_BASE = 0.2f;
     private static final float PERCENT_SCALING = 0.01f;
     private static final float PERCENT_MAXIMUM = 0.4f;
+    private static final float KNIGHT_BONUS = 1f;
     private static final float PYROMANCER_BONUS = 1.1f;
     private static final float ROGUE_BONUS = 1.15f;
     private static final float WIZARD_BONUS = 0.8f;
@@ -47,6 +48,7 @@ public class Execute extends Ability {
     public void affect(final Knight target) {
         float damage = attack(target);
         target.setLastTotalDamage(damage);
+        damage *= KNIGHT_BONUS;
         target.takeDamage(Math.round(damage));
     }
 
