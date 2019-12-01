@@ -8,9 +8,9 @@ public class StatusEffect {
     private StatusEffectType type;
     private int duration;
     private Hero target;
-    private int amount;
+    private float amount;
 
-    protected static int getPercentage(final int percent, final int of) {
+    protected static int getPercentage(final int percent, final float of) {
         float res = ((float) percent) / PERCENT * ((float) of);
         return Math.round(res);
     }
@@ -36,6 +36,14 @@ public class StatusEffect {
         this.amount = amount;
     }
 
+    public StatusEffect(final Hero target, final StatusEffectType type,
+                        final float amount, final int duration) {
+        this.type = type;
+        this.duration = duration;
+        this.target = target;
+        this.amount = amount;
+    }
+
     /**
      * Apply the status effect.
      */
@@ -43,7 +51,7 @@ public class StatusEffect {
         duration--;
         if (type == StatusEffectType.OVERTIME_DMG
                 || type == StatusEffectType.STUN_AND_DAMAGE) {
-            target.takeResidualDamage(amount);
+            target.takeResidualDamage(Math.round(amount));
         }
 
         if (duration == 0) {

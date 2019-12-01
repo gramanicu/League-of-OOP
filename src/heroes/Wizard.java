@@ -1,6 +1,8 @@
 package heroes;
 
 import abilities.Ability;
+import abilities.Deflect;
+import abilities.Drain;
 import maps.Point;
 import maps.TerrainType;
 
@@ -16,52 +18,59 @@ public class Wizard extends Hero {
 
     /**
      * Get affected by an ability.
-     *
      * @param ability The ability that will affect the hero
      */
     @Override
     public void accept(final Ability ability) {
-
+        ability.affect(this);
     }
 
     /**
      * Attack another hero.
-     *
      * @param target The targeted knight
      */
     @Override
     public void attack(final Knight target) {
-
+        Drain drain = new Drain(this);
+        drain.affect(target);
+        Deflect deflect = new Deflect(this);
+        deflect.affect(target);
     }
 
     /**
      * Attack another hero.
-     *
      * @param target The targeted pyromancer
      */
     @Override
     public void attack(final Pyromancer target) {
-
+        Drain drain = new Drain(this);
+        drain.affect(target);
+        Deflect deflect = new Deflect(this);
+        deflect.affect(target);
     }
 
     /**
      * Attack another hero.
-     *
      * @param target The targeted wizard
      */
     @Override
     public void attack(final Wizard target) {
-
+        Drain drain = new Drain(this);
+        drain.affect(target);
+//        Deflect deflect = new Deflect(this);
+//        deflect.affect(target);
     }
 
     /**
      * Attack another hero.
-     *
      * @param target The targeted rogue
      */
     @Override
     public void attack(final Rogue target) {
-
+        Drain drain = new Drain(this);
+        drain.affect(target);
+        Deflect deflect = new Deflect(this);
+        deflect.affect(target);
     }
 
     /**
@@ -77,6 +86,10 @@ public class Wizard extends Hero {
      */
     @Override
     public int getTerrainBonus() {
-        return 0;
+        if (getTerrain() == HOME_TERRAIN) {
+            return TERRAIN_MODIFIER;
+        } else {
+            return 0;
+        }
     }
 }

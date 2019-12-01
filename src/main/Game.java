@@ -142,11 +142,11 @@ public final class Game {
             // If someone died
             if (firstAfter || secondAfter) {
                 if (!(firstAfter && secondAfter)) {
-                    if (!firstDead && firstAfter) {
+                    if (firstAfter) {
                         second.won(first);
                     }
 
-                    if (!secondDead && secondAfter) {
+                    if (secondAfter) {
                         first.won(second);
                     }
                 }

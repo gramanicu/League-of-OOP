@@ -26,8 +26,8 @@ public class Backstab extends Ability {
      * @return The damage the target will take
      */
     @Override
-    protected int attack(final Hero target) {
-        int damage = DAMAGE + SCALING * caster.getLevel();
+    protected float attack(final Hero target) {
+        float damage = DAMAGE + SCALING * caster.getLevel();
         if (((Rogue) caster).getAttacksCount() % CRITICAL_PERIOD == 0) {
             if (caster.getTerrainBonus() != 0) {
                 damage += getPercentage(CRITICAL_PERCENT, damage);
@@ -42,9 +42,10 @@ public class Backstab extends Ability {
      */
     @Override
     public void affect(final Knight target) {
-        int damage = attack(target);
+        float damage = attack(target);
+        target.setLastTotalDamage(Math.round(damage));
         damage += getPercentage(KNIGHT_BONUS, damage);
-        target.takeDamage(damage);
+        target.takeDamage(Math.round(damage));
     }
 
     /**
@@ -52,9 +53,10 @@ public class Backstab extends Ability {
      */
     @Override
     public void affect(final Pyromancer target) {
-        int damage = attack(target);
+        float damage = attack(target);
+        target.setLastTotalDamage(Math.round(damage));
         damage += getPercentage(PYROMANCER_BONUS, damage);
-        target.takeDamage(damage);
+        target.takeDamage(Math.round(damage));
     }
 
     /**
@@ -62,9 +64,10 @@ public class Backstab extends Ability {
      */
     @Override
     public void affect(final Wizard target) {
-        int damage = attack(target);
+        float damage = attack(target);
+        target.setLastTotalDamage(Math.round(damage));
         damage += getPercentage(WIZARD_BONUS, damage);
-        target.takeDamage(damage);
+        target.takeDamage(Math.round(damage));
     }
 
     /**
@@ -72,8 +75,9 @@ public class Backstab extends Ability {
      */
     @Override
     public void affect(final Rogue target) {
-        int damage = attack(target);
+        float damage = attack(target);
+        target.setLastTotalDamage(Math.round(damage));
         damage += getPercentage(ROGUE_BONUS, damage);
-        target.takeDamage(damage);
+        target.takeDamage(Math.round(damage));
     }
 }

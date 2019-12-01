@@ -6,18 +6,16 @@ import heroes.Pyromancer;
 import heroes.Rogue;
 import heroes.Wizard;
 
-public class Ignite extends Ability {
-    private static final int DAMAGE = 150;
-    private static final int SCALING = 20;
-    private static final int OVERTIME_BASE = 50;
-    private static final int OVERTIME_SCALING = 30;
-    private static final int OVERTIME_DURATION = 2;
-    private static final int PYROMANCER_BONUS = -10;
+public class Drain extends Ability {
+    private static final int PERCENT = 20;
+    private static final int PERCENT_SCALING = 5;
+    private static final int FACTOR_PERCENT = 30;
     private static final int ROGUE_BONUS = -20;
-    private static final int WIZARD_BONUS = 5;
     private static final int KNIGHT_BONUS = 20;
+    private static final int PYROMANCER_BONUS = -10;
+    private static final int WIZARD_BONUS = 5;
 
-    public Ignite(final Pyromancer hero) {
+    public Drain(final Wizard hero) {
         caster = hero;
     }
 
@@ -28,13 +26,11 @@ public class Ignite extends Ability {
      */
     @Override
     protected float attack(final Hero target) {
-        float damage = DAMAGE + SCALING * caster.getLevel();
-        damage += getTerrainBonus(damage);
-        int overtimeDmg = OVERTIME_BASE + OVERTIME_SCALING * caster.getLevel();
-        overtimeDmg += getTerrainBonus(overtimeDmg);
-        statusEffect = new StatusEffect(target,
-                StatusEffectType.OVERTIME_DMG, overtimeDmg, OVERTIME_DURATION);
-        return damage;
+        float percentage = PERCENT + PERCENT_SCALING * caster.getLevel();
+        percentage += getTerrainBonus(percentage);
+        float baseHP = Math.min(getPercentage(FACTOR_PERCENT, target.getMaxHp()),
+                target.getHp());
+        return getPercentage(percentage, baseHP);
     }
 
     /**
@@ -43,10 +39,9 @@ public class Ignite extends Ability {
     @Override
     public void affect(final Knight target) {
         float damage = attack(target);
+        target.setLastTotalDamage(Math.round(damage));
         damage += getPercentage(KNIGHT_BONUS, damage);
-        statusEffect.setRaceBonus(KNIGHT_BONUS);
         target.takeDamage(Math.round(damage));
-        target.setStatusEffect(statusEffect);
     }
 
     /**
@@ -55,10 +50,9 @@ public class Ignite extends Ability {
     @Override
     public void affect(final Pyromancer target) {
         float damage = attack(target);
+        target.setLastTotalDamage(Math.round(damage));
         damage += getPercentage(PYROMANCER_BONUS, damage);
-        statusEffect.setRaceBonus(PYROMANCER_BONUS);
         target.takeDamage(Math.round(damage));
-        target.setStatusEffect(statusEffect);
     }
 
     /**
@@ -67,10 +61,9 @@ public class Ignite extends Ability {
     @Override
     public void affect(final Wizard target) {
         float damage = attack(target);
+        target.setLastTotalDamage(Math.round(damage));
         damage += getPercentage(WIZARD_BONUS, damage);
-        statusEffect.setRaceBonus(WIZARD_BONUS);
         target.takeDamage(Math.round(damage));
-        target.setStatusEffect(statusEffect);
     }
 
     /**
@@ -79,9 +72,8 @@ public class Ignite extends Ability {
     @Override
     public void affect(final Rogue target) {
         float damage = attack(target);
+        target.setLastTotalDamage(Math.round(damage));
         damage += getPercentage(ROGUE_BONUS, damage);
-        statusEffect.setRaceBonus(ROGUE_BONUS);
         target.takeDamage(Math.round(damage));
-        target.setStatusEffect(statusEffect);
     }
 }

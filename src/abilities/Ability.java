@@ -12,9 +12,19 @@ public abstract class Ability {
     protected static Hero caster;
     protected StatusEffect statusEffect = new StatusEffect();
 
-    protected static int getPercentage(final int percent, final int of) {
+    protected static float getPercentage(final int percent, final int of) {
         float res = ((float) percent) / PERCENT * ((float) of);
-        return Math.round(res);
+        return res;
+    }
+
+    protected static float getPercentage(final int percent, final float of) {
+        float res = ((float) percent) / PERCENT * of;
+        return res;
+    }
+
+    protected static float getPercentage(final float percent, final float of) {
+        float res = percent / PERCENT * of;
+        return res;
     }
 
     /**
@@ -22,7 +32,7 @@ public abstract class Ability {
      * @param damage The initial damage
      * @return The amplified damage
      */
-    protected int getTerrainBonus(final int damage) {
+    protected float getTerrainBonus(final float damage) {
         return getPercentage(caster.getTerrainBonus(), damage);
     }
 
@@ -31,7 +41,7 @@ public abstract class Ability {
      * @param target The target to attack
      * @return The damage the target will take
      */
-    protected abstract int attack(Hero target);
+    protected abstract float attack(Hero target);
 
     /**
      * @param target The knight to be affected by the ability

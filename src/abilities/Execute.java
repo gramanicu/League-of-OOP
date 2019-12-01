@@ -27,14 +27,14 @@ public class Execute extends Ability {
      * @return The damage the target will take
      */
     @Override
-    protected int attack(final Hero target) {
+    protected float attack(final Hero target) {
         int percentage = Math.min(PERCENT_BASE
                 + PERCENT_SCALING * caster.getLevel(), PERCENT_MAXIMUM);
-        int executeThreshold = getPercentage(percentage, target.getMaxHp());
+        float executeThreshold = getPercentage(percentage, target.getMaxHp());
         if (target.getHp() < executeThreshold) {
            return executeThreshold;
         } else {
-            int damage = DAMAGE + SCALING * caster.getLevel();
+            float damage = DAMAGE + SCALING * caster.getLevel();
             damage += getTerrainBonus(damage);
             return damage;
         }
@@ -45,7 +45,9 @@ public class Execute extends Ability {
      */
     @Override
     public void affect(final Knight target) {
-        target.takeDamage(attack(target));
+        float damage = attack(target);
+        target.setLastTotalDamage(Math.round(damage));
+        target.takeDamage(Math.round(damage));
     }
 
     /**
@@ -53,9 +55,10 @@ public class Execute extends Ability {
      */
     @Override
     public void affect(final Pyromancer target) {
-        int damage = attack(target);
+        float damage = attack(target);
+        target.setLastTotalDamage(Math.round(damage));
         damage += getPercentage(PYROMANCER_BONUS, damage);
-        target.takeDamage(damage);
+        target.takeDamage(Math.round(damage));
     }
 
     /**
@@ -63,9 +66,10 @@ public class Execute extends Ability {
      */
     @Override
     public void affect(final Wizard target) {
-        int damage = attack(target);
+        float damage = attack(target);
+        target.setLastTotalDamage(Math.round(damage));
         damage += getPercentage(WIZARD_BONUS, damage);
-        target.takeDamage(damage);
+        target.takeDamage(Math.round(damage));
     }
 
     /**
@@ -73,8 +77,9 @@ public class Execute extends Ability {
      */
     @Override
     public void affect(final Rogue target) {
-        int damage = attack(target);
+        float damage = attack(target);
+        target.setLastTotalDamage(Math.round(damage));
         damage += getPercentage(ROGUE_BONUS, damage);
-        target.takeDamage(damage);
+        target.takeDamage(Math.round(damage));
     }
 }

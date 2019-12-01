@@ -26,10 +26,10 @@ public class Paralysis extends Ability {
      * @return The damage the target will take
      */
     @Override
-    protected int attack(final Hero target) {
+    protected float attack(final Hero target) {
         int damage = DAMAGE + SCALING * caster.getLevel();
         damage += getTerrainBonus(damage);
-        int overtimeDmg = damage;
+        float overtimeDmg = damage;
         int duration = OVERTIME_DURATION;
         if (caster.getTerrainBonus() != 0) {
             duration = OVERTIME_BONUS;
@@ -45,10 +45,11 @@ public class Paralysis extends Ability {
      */
     @Override
     public void affect(final Knight target) {
-        int damage = attack(target);
+        float damage = attack(target);
+        target.setLastTotalDamage(Math.round(damage));
         damage += getPercentage(KNIGHT_BONUS, damage);
         statusEffect.setRaceBonus(KNIGHT_BONUS);
-        target.takeDamage(damage);
+        target.takeDamage(Math.round(damage));
         target.setStatusEffect(statusEffect);
     }
 
@@ -57,10 +58,11 @@ public class Paralysis extends Ability {
      */
     @Override
     public void affect(final Pyromancer target) {
-        int damage = attack(target);
+        float damage = attack(target);
+        target.setLastTotalDamage(Math.round(damage));
         damage += getPercentage(PYROMANCER_BONUS, damage);
         statusEffect.setRaceBonus(PYROMANCER_BONUS);
-        target.takeDamage(damage);
+        target.takeDamage(Math.round(damage));
         target.setStatusEffect(statusEffect);
     }
 
@@ -69,10 +71,11 @@ public class Paralysis extends Ability {
      */
     @Override
     public void affect(final Wizard target) {
-        int damage = attack(target);
+        float damage = attack(target);
+        target.setLastTotalDamage(Math.round(damage));
         damage += getPercentage(WIZARD_BONUS, damage);
         statusEffect.setRaceBonus(WIZARD_BONUS);
-        target.takeDamage(damage);
+        target.takeDamage(Math.round(damage));
         target.setStatusEffect(statusEffect);
     }
 
@@ -81,10 +84,11 @@ public class Paralysis extends Ability {
      */
     @Override
     public void affect(final Rogue target) {
-        int damage = attack(target);
+        float damage = attack(target);
+        target.setLastTotalDamage(Math.round(damage));
         damage += getPercentage(ROGUE_BONUS, damage);
         statusEffect.setRaceBonus(ROGUE_BONUS);
-        target.takeDamage(damage);
+        target.takeDamage(Math.round(damage));
         target.setStatusEffect(statusEffect);
     }
 }
