@@ -28,7 +28,16 @@ public class Deflect extends Ability {
         int percent = PERCENT + PERCENT_SCALING * caster.getLevel();
         float damage = getPercentage(percent, caster.getLastTotalDmg());
         damage += getTerrainBonus(damage);
-        return damage;
+        ((Wizard) caster).setDamageTotal(((Wizard) caster).getDamageTotal()
+                + damage);
+
+        if (((Wizard) caster).getDeflected() % 2 == 0) {
+            damage = ((Wizard) caster).getDamageTotal();
+            ((Wizard) caster).setDamageTotal(0.0f);
+            return damage;
+        } else {
+            return 0;
+        }
     }
 
     /**

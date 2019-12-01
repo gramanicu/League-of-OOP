@@ -12,6 +12,9 @@ public class Wizard extends Hero {
     private static final int TERRAIN_MODIFIER = 10;
     private static final TerrainType HOME_TERRAIN = TerrainType.DESERT;
 
+    private float damageTotal = 0;
+    private int deflected = 0;
+
     public Wizard(final Point position) {
         super(HeroType.WIZARD, BASE_HP, SCALING_HP, position);
     }
@@ -24,6 +27,7 @@ public class Wizard extends Hero {
     public void accept(final Ability ability) {
         ability.affect(this);
         Deflect deflect = new Deflect(this);
+        deflected++;
         switch (ability.getCaster().getType()) {
             case KNIGHT:
                 deflect.affect(((Knight) ability.getCaster()));
@@ -100,5 +104,27 @@ public class Wizard extends Hero {
         } else {
             return 0;
         }
+    }
+
+    /**
+     * @return The number of times the wizard deflected
+     */
+    public int getDeflected() {
+        return deflected;
+    }
+
+    /**
+     * Set the damage that accumulated for a deflection.
+     * @param amount The damage amount
+     */
+    public void setDamageTotal(final float amount) {
+        this.damageTotal = amount;
+    }
+
+    /**
+     * @return The damage that accumulated for deflect
+     */
+    public float getDamageTotal() {
+        return damageTotal;
     }
 }
