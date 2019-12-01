@@ -46,7 +46,7 @@ public class Execute extends Ability {
     @Override
     public void affect(final Knight target) {
         float damage = attack(target);
-        target.setLastTotalDamage(Math.round(damage));
+        target.addLastTotalDamage(Math.round(damage));
         target.takeDamage(Math.round(damage));
     }
 
@@ -56,7 +56,7 @@ public class Execute extends Ability {
     @Override
     public void affect(final Pyromancer target) {
         float damage = attack(target);
-        target.setLastTotalDamage(Math.round(damage));
+        target.addLastTotalDamage(Math.round(damage));
         damage += getPercentage(PYROMANCER_BONUS, damage);
         target.takeDamage(Math.round(damage));
     }
@@ -67,7 +67,7 @@ public class Execute extends Ability {
     @Override
     public void affect(final Wizard target) {
         float damage = attack(target);
-        target.setLastTotalDamage(Math.round(damage));
+        target.addLastTotalDamage(Math.round(damage));
         damage += getPercentage(WIZARD_BONUS, damage);
         target.takeDamage(Math.round(damage));
     }
@@ -78,7 +78,7 @@ public class Execute extends Ability {
     @Override
     public void affect(final Rogue target) {
         float damage = attack(target);
-        target.setLastTotalDamage(Math.round(damage));
+        target.addLastTotalDamage(Math.round(damage));
         damage += getPercentage(ROGUE_BONUS, damage);
         target.takeDamage(Math.round(damage));
     }

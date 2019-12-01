@@ -226,8 +226,15 @@ public abstract class Hero {
      * Set the last (total) dmg the hero got (no race modifiers).
      * @param amount The dmg amount
      */
-    public void setLastTotalDamage(final int amount) {
-        this.lastTotalDmg = amount;
+    public void addLastTotalDamage(final int amount) {
+        this.lastTotalDmg += amount;
+    }
+
+    /**
+     * Reset the "lastTotalDmg" (new round).
+     */
+    public void resetLastTotalDamage() {
+        this.lastTotalDmg = 0;
     }
 
     /**

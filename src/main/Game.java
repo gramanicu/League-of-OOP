@@ -124,6 +124,8 @@ public final class Game {
     }
 
     private void fight(final Hero first, final Hero second) {
+        first.resetLastTotalDamage();
+        second.resetLastTotalDamage();
         boolean firstDead;
         firstDead = first.isDead();
         boolean secondDead;
