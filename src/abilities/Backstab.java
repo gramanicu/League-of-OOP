@@ -29,7 +29,7 @@ public class Backstab extends Ability {
     protected float attack(final Hero target) {
         float damage = DAMAGE + SCALING * caster.getLevel();
         if (((Rogue) caster).getAttacksCount() % CRITICAL_PERIOD == 0) {
-            if (caster.getTerrainBonus() != 0) {
+            if (caster.getTerrainBonus() != 1f) {
                 damage *= CRITICAL_PERCENT;
             }
         }
