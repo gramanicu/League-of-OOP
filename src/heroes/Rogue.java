@@ -12,6 +12,8 @@ public class Rogue extends Hero {
     public static final int TERRAIN_MODIFIER = 15;
     public static final TerrainType HOME_TERRAIN = TerrainType.WOODS;
 
+    private int attacks = 0;
+
     public Rogue(final Point position) {
         super(HeroType.ROGUE, BASE_HP, SCALING_HP, position);
     }
@@ -37,6 +39,7 @@ public class Rogue extends Hero {
         backstab.affect(target);
         Paralysis paralysis = new Paralysis(this);
         paralysis.affect(target);
+        attacks++;
     }
 
     /**
@@ -96,5 +99,12 @@ public class Rogue extends Hero {
         } else {
             return 0;
         }
+    }
+
+    /**
+     * @return How many times the rogue attacked
+     */
+    public int getAttacksCount() {
+        return attacks;
     }
 }

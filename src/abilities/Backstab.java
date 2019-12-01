@@ -16,8 +16,6 @@ public class Backstab extends Ability {
     private static final int PYROMANCER_BONUS = 25;
     private static final int WIZARD_BONUS = 25;
 
-    private int attacks = 0;
-
     public Backstab(final Rogue hero) {
         caster = hero;
     }
@@ -30,12 +28,10 @@ public class Backstab extends Ability {
     @Override
     protected int attack(final Hero target) {
         int damage = DAMAGE + SCALING * caster.getLevel();
-        attacks += 1;
-        if (attacks == CRITICAL_PERIOD) {
+        if (((Rogue) caster).getAttacksCount() % CRITICAL_PERIOD == 0) {
             if (caster.getTerrainBonus() != 0) {
                 damage += getPercentage(CRITICAL_PERCENT, damage);
             }
-            attacks = 0;
         }
         damage += getTerrainBonus(damage);
         return damage;
