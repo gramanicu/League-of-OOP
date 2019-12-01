@@ -9,7 +9,7 @@ import maps.TerrainType;
 public class Knight extends Hero {
     private static final int BASE_HP = 900;
     private static final int SCALING_HP = 80;
-    public static final float TERRAIN_MODIFIER = 1.5f;
+    public static final float TERRAIN_MODIFIER = 1.15f;
     public static final TerrainType HOME_TERRAIN = TerrainType.LAND;
 
     public Knight(final Point position) {

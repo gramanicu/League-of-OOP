@@ -9,7 +9,7 @@ import maps.TerrainType;
 public class Rogue extends Hero {
     private static final int BASE_HP = 600;
     private static final int SCALING_HP = 40;
-    public static final float TERRAIN_MODIFIER = 1.5f;
+    public static final float TERRAIN_MODIFIER = 1.15f;
     public static final TerrainType HOME_TERRAIN = TerrainType.WOODS;
 
     private int attacks = 0;
