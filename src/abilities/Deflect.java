@@ -37,7 +37,7 @@ public class Deflect extends Ability {
     @Override
     public void affect(final Knight target) {
         float damage = attack(target);
-        target.addLastTotalDamage(Math.round(damage));
+        target.setLastTotalDamage(Math.round(damage));
         damage += getPercentage(KNIGHT_BONUS, damage);
         target.takeDamage(Math.round(damage));
     }
@@ -48,7 +48,7 @@ public class Deflect extends Ability {
     @Override
     public void affect(final Pyromancer target) {
         float damage = attack(target);
-        target.addLastTotalDamage(Math.round(damage));
+        target.setLastTotalDamage(Math.round(damage));
         damage += getPercentage(PYROMANCER_BONUS, damage);
         target.takeDamage(Math.round(damage));
     }
@@ -58,7 +58,7 @@ public class Deflect extends Ability {
      */
     @Override
     public void affect(final Wizard target) {
-        target.addLastTotalDamage(0);
+        target.setLastTotalDamage(0);
         target.takeDamage(0);
     }
 
@@ -68,7 +68,7 @@ public class Deflect extends Ability {
     @Override
     public void affect(final Rogue target) {
         float damage = attack(target);
-        target.addLastTotalDamage(Math.round(damage));
+        target.setLastTotalDamage(Math.round(damage));
         damage += getPercentage(ROGUE_BONUS, damage);
         target.takeDamage(Math.round(damage));
     }

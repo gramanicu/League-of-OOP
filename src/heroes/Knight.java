@@ -34,9 +34,9 @@ public class Knight extends Hero {
     @Override
     public void attack(final Knight target) {
         Execute execute = new Execute(this);
-        execute.affect(target);
+        target.accept(execute);
         Slam slam = new Slam(this);
-        slam.affect(target);
+        target.accept(slam);
     }
 
     /**
@@ -47,9 +47,9 @@ public class Knight extends Hero {
     @Override
     public void attack(final Pyromancer target) {
         Execute execute = new Execute(this);
-        execute.affect(target);
+        target.accept(execute);
         Slam slam = new Slam(this);
-        slam.affect(target);
+        target.accept(slam);
     }
 
     /**
@@ -60,9 +60,9 @@ public class Knight extends Hero {
     @Override
     public void attack(final Wizard target) {
         Execute execute = new Execute(this);
-        execute.affect(target);
+        target.accept(execute);
         Slam slam = new Slam(this);
-        slam.affect(target);
+        target.accept(slam);
     }
 
     /**
@@ -73,9 +73,9 @@ public class Knight extends Hero {
     @Override
     public void attack(final Rogue target) {
         Execute execute = new Execute(this);
-        execute.affect(target);
+        target.accept(execute);
         Slam slam = new Slam(this);
-        slam.affect(target);
+        target.accept(slam);
     }
 
     /**

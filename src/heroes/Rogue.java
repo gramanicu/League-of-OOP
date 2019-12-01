@@ -36,9 +36,9 @@ public class Rogue extends Hero {
     @Override
     public void attack(final Knight target) {
         Backstab backstab = new Backstab(this);
-        backstab.affect(target);
+        target.accept(backstab);
         Paralysis paralysis = new Paralysis(this);
-        paralysis.affect(target);
+        target.accept(paralysis);
         attacks++;
     }
 
@@ -50,9 +50,10 @@ public class Rogue extends Hero {
     @Override
     public void attack(final Pyromancer target) {
         Backstab backstab = new Backstab(this);
-        backstab.affect(target);
+        target.accept(backstab);
         Paralysis paralysis = new Paralysis(this);
-        paralysis.affect(target);
+        target.accept(paralysis);
+        attacks++;
     }
 
     /**
@@ -63,9 +64,10 @@ public class Rogue extends Hero {
     @Override
     public void attack(final Wizard target) {
         Backstab backstab = new Backstab(this);
-        backstab.affect(target);
+        target.accept(backstab);
         Paralysis paralysis = new Paralysis(this);
-        paralysis.affect(target);
+        target.accept(paralysis);
+        attacks++;
     }
 
     /**
@@ -76,9 +78,10 @@ public class Rogue extends Hero {
     @Override
     public void attack(final Rogue target) {
         Backstab backstab = new Backstab(this);
-        backstab.affect(target);
+        target.accept(backstab);
         Paralysis paralysis = new Paralysis(this);
-        paralysis.affect(target);
+        target.accept(paralysis);
+        attacks++;
     }
 
     /**

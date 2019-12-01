@@ -9,7 +9,7 @@ import heroes.Wizard;
 public abstract class Ability {
     private static final float PERCENT = 100.0f;
 
-    protected static Hero caster;
+    protected Hero caster;
     protected StatusEffect statusEffect = new StatusEffect();
 
     protected static float getPercentage(final int percent, final int of) {
@@ -62,4 +62,11 @@ public abstract class Ability {
      * @param target The rogue to be affected by the ability
      */
     public abstract void affect(Rogue target);
+
+    /**
+     * @return Who casted the ability
+     */
+    public Hero getCaster() {
+        return caster;
+    }
 }

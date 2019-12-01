@@ -32,9 +32,9 @@ public class Pyromancer extends Hero {
     @Override
     public void attack(final Knight target) {
         Fireblast fireblast = new Fireblast(this);
-        fireblast.affect(target);
+        target.accept(fireblast);
         Ignite ignite = new Ignite(this);
-        ignite.affect(target);
+        target.accept(ignite);
     }
 
     /**
@@ -44,9 +44,9 @@ public class Pyromancer extends Hero {
     @Override
     public void attack(final Pyromancer target) {
         Fireblast fireblast = new Fireblast(this);
-        fireblast.affect(target);
+        target.accept(fireblast);
         Ignite ignite = new Ignite(this);
-        ignite.affect(target);
+        target.accept(ignite);
     }
 
     /**
@@ -56,9 +56,9 @@ public class Pyromancer extends Hero {
     @Override
     public void attack(final Wizard target) {
         Fireblast fireblast = new Fireblast(this);
-        fireblast.affect(target);
+        target.accept(fireblast);
         Ignite ignite = new Ignite(this);
-        ignite.affect(target);
+        target.accept(ignite);
     }
 
     /**
@@ -68,9 +68,9 @@ public class Pyromancer extends Hero {
     @Override
     public void attack(final Rogue target) {
         Fireblast fireblast = new Fireblast(this);
-        fireblast.affect(target);
+        target.accept(fireblast);
         Ignite ignite = new Ignite(this);
-        ignite.affect(target);
+        target.accept(ignite);
     }
 
     /**

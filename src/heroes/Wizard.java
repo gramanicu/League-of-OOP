@@ -9,8 +9,8 @@ import maps.TerrainType;
 public class Wizard extends Hero {
     private static final int BASE_HP = 400;
     private static final int SCALING_HP = 30;
-    public static final int TERRAIN_MODIFIER = 10;
-    public static final TerrainType HOME_TERRAIN = TerrainType.DESERT;
+    private static final int TERRAIN_MODIFIER = 10;
+    private static final TerrainType HOME_TERRAIN = TerrainType.DESERT;
 
     public Wizard(final Point position) {
         super(HeroType.WIZARD, BASE_HP, SCALING_HP, position);
@@ -23,6 +23,23 @@ public class Wizard extends Hero {
     @Override
     public void accept(final Ability ability) {
         ability.affect(this);
+        Deflect deflect = new Deflect(this);
+        switch (ability.getCaster().getType()) {
+            case KNIGHT:
+                deflect.affect(((Knight) ability.getCaster()));
+                break;
+            case PYROMANCER:
+                deflect.affect(((Pyromancer) ability.getCaster()));
+                break;
+            case ROGUE:
+                deflect.affect(((Rogue) ability.getCaster()));
+                break;
+            case WIZARD:
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: "
+                        + ability.getCaster().getType());
+        }
     }
 
     /**
@@ -32,9 +49,7 @@ public class Wizard extends Hero {
     @Override
     public void attack(final Knight target) {
         Drain drain = new Drain(this);
-        drain.affect(target);
-        Deflect deflect = new Deflect(this);
-        deflect.affect(target);
+        target.accept(drain);
     }
 
     /**
@@ -44,9 +59,7 @@ public class Wizard extends Hero {
     @Override
     public void attack(final Pyromancer target) {
         Drain drain = new Drain(this);
-        drain.affect(target);
-        Deflect deflect = new Deflect(this);
-        deflect.affect(target);
+        target.accept(drain);
     }
 
     /**
@@ -56,9 +69,7 @@ public class Wizard extends Hero {
     @Override
     public void attack(final Wizard target) {
         Drain drain = new Drain(this);
-        drain.affect(target);
-//        Deflect deflect = new Deflect(this);
-//        deflect.affect(target);
+        target.accept(drain);
     }
 
     /**
@@ -68,9 +79,7 @@ public class Wizard extends Hero {
     @Override
     public void attack(final Rogue target) {
         Drain drain = new Drain(this);
-        drain.affect(target);
-        Deflect deflect = new Deflect(this);
-        deflect.affect(target);
+        target.accept(drain);
     }
 
     /**
