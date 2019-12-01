@@ -14,7 +14,7 @@ public abstract class Hero {
     private int hp;
     private final int hpScaling;
     private int maxHp;
-    private int lastTotalDmg;
+    private float lastTotalDmg;
     private Point position;
     private StatusEffect statusEffect;
 
@@ -31,7 +31,7 @@ public abstract class Hero {
         this.hpScaling = hpScaling;
         this.maxHp = hp;
         this.position = position;
-        this.lastTotalDmg = 0;
+        this.lastTotalDmg = 0.0f;
         this.statusEffect = new StatusEffect();
     }
 
@@ -220,20 +220,20 @@ public abstract class Hero {
     /**
      * @return The terrain bonus for the hero
      */
-    public abstract int getTerrainBonus();
+    public abstract float getTerrainBonus();
 
     /**
      * Set the last (total) dmg the hero got (no race modifiers).
      * @param amount The dmg amount
      */
-    public void setLastTotalDamage(final int amount) {
+    public void setLastTotalDamage(final float amount) {
         this.lastTotalDmg = amount;
     }
 
     /**
      * @return The last (total) dmg the hero got
      */
-    public int getLastTotalDmg() {
+    public float getLastTotalDmg() {
         return lastTotalDmg;
     }
 

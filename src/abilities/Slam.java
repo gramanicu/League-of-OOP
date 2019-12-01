@@ -28,7 +28,7 @@ public class Slam extends Ability {
     @Override
     protected float attack(final Hero target) {
         float damage = DAMAGE + SCALING * caster.getLevel();
-        damage += getTerrainBonus(damage);
+        damage *= getTerrainBonus();
         statusEffect = new StatusEffect(target, StatusEffectType.STUN, STUN_DURATION);
         return damage;
     }
@@ -40,7 +40,7 @@ public class Slam extends Ability {
     public void affect(final Knight target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage += getPercentage(KNIGHT_BONUS, damage);
+        damage *= KNIGHT_BONUS;
         target.takeDamage(Math.round(damage));
         target.setStatusEffect(statusEffect);
     }
@@ -52,7 +52,7 @@ public class Slam extends Ability {
     public void affect(final Pyromancer target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage += getPercentage(PYROMANCER_BONUS, damage);
+        damage *= PYROMANCER_BONUS;
         target.takeDamage(Math.round(damage));
         target.setStatusEffect(statusEffect);
     }
@@ -64,7 +64,7 @@ public class Slam extends Ability {
     public void affect(final Wizard target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage += getPercentage(WIZARD_BONUS, damage);
+        damage *= WIZARD_BONUS;
         target.takeDamage(Math.round(damage));
         target.setStatusEffect(statusEffect);
     }
@@ -76,7 +76,7 @@ public class Slam extends Ability {
     public void affect(final Rogue target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage += getPercentage(ROGUE_BONUS, damage);
+        damage *= ROGUE_BONUS;
         target.takeDamage(Math.round(damage));
         target.setStatusEffect(statusEffect);
     }

@@ -9,10 +9,10 @@ import heroes.Wizard;
 public class Fireblast extends Ability {
     private static final int DAMAGE = 350;
     private static final int SCALING = 50;
-    private static final int PYROMANCER_BONUS = -10;
-    private static final int KNIGHT_BONUS = 20;
-    private static final int ROGUE_BONUS = -20;
-    private static final int WIZARD_BONUS = 5;
+    private static final float PYROMANCER_BONUS = 0.9f;
+    private static final float KNIGHT_BONUS = 1.2f;
+    private static final float ROGUE_BONUS = 0.8f;
+    private static final float WIZARD_BONUS = 1.05f;
 
     public Fireblast(final Pyromancer hero) {
         caster = hero;
@@ -26,7 +26,7 @@ public class Fireblast extends Ability {
     @Override
     protected float attack(final Hero target) {
         float damage = DAMAGE + SCALING * caster.getLevel();
-        damage += getTerrainBonus(damage);
+        damage *= getTerrainBonus();
         return damage;
     }
 
@@ -37,7 +37,7 @@ public class Fireblast extends Ability {
     public void affect(final Knight target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage += getPercentage(KNIGHT_BONUS, damage);
+        damage *= KNIGHT_BONUS;
         target.takeDamage(Math.round(damage));
     }
 
@@ -48,7 +48,7 @@ public class Fireblast extends Ability {
     public void affect(final Pyromancer target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage += getPercentage(PYROMANCER_BONUS, damage);
+        damage *= PYROMANCER_BONUS;
         target.takeDamage(Math.round(damage));
     }
 
@@ -59,7 +59,7 @@ public class Fireblast extends Ability {
     public void affect(final Wizard target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage += getPercentage(WIZARD_BONUS, damage);
+        damage *= WIZARD_BONUS;
         target.takeDamage(Math.round(damage));
     }
 
@@ -70,7 +70,7 @@ public class Fireblast extends Ability {
     public void affect(final Rogue target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage += getPercentage(ROGUE_BONUS, damage);
+        damage *= ROGUE_BONUS;
         target.takeDamage(Math.round(damage));
     }
 }

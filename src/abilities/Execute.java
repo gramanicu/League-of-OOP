@@ -9,12 +9,12 @@ import heroes.Hero;
 public class Execute extends Ability {
     private static final int DAMAGE = 200;
     private static final int SCALING = 30;
-    private static final int PERCENT_BASE = 20;
-    private static final int PERCENT_SCALING = 1;
-    private static final int PERCENT_MAXIMUM = 40;
-    private static final int PYROMANCER_BONUS = 10;
-    private static final int ROGUE_BONUS = 15;
-    private static final int WIZARD_BONUS = -20;
+    private static final float PERCENT_BASE = 0.2f;
+    private static final float PERCENT_SCALING = 0.01f;
+    private static final float PERCENT_MAXIMUM = 0.4f;
+    private static final float PYROMANCER_BONUS = 1.1f;
+    private static final float ROGUE_BONUS = 1.15f;
+    private static final float WIZARD_BONUS = 0.8f;
 
 
     public Execute(final Knight hero) {
@@ -28,14 +28,14 @@ public class Execute extends Ability {
      */
     @Override
     protected float attack(final Hero target) {
-        int percentage = Math.min(PERCENT_BASE
+        float percentage = Math.min(PERCENT_BASE
                 + PERCENT_SCALING * caster.getLevel(), PERCENT_MAXIMUM);
-        float executeThreshold = getPercentage(percentage, target.getMaxHp());
+        float executeThreshold = percentage * target.getMaxHp();
         if (target.getHp() < executeThreshold) {
            return executeThreshold;
         } else {
             float damage = DAMAGE + SCALING * caster.getLevel();
-            damage += getTerrainBonus(damage);
+            damage *= getTerrainBonus();
             return damage;
         }
     }
@@ -46,7 +46,7 @@ public class Execute extends Ability {
     @Override
     public void affect(final Knight target) {
         float damage = attack(target);
-        target.setLastTotalDamage(Math.round(damage));
+        target.setLastTotalDamage(damage);
         target.takeDamage(Math.round(damage));
     }
 
@@ -56,8 +56,8 @@ public class Execute extends Ability {
     @Override
     public void affect(final Pyromancer target) {
         float damage = attack(target);
-        target.setLastTotalDamage(Math.round(damage));
-        damage += getPercentage(PYROMANCER_BONUS, damage);
+        target.setLastTotalDamage(damage);
+        damage *= PYROMANCER_BONUS;
         target.takeDamage(Math.round(damage));
     }
 
@@ -67,8 +67,8 @@ public class Execute extends Ability {
     @Override
     public void affect(final Wizard target) {
         float damage = attack(target);
-        target.setLastTotalDamage(Math.round(damage));
-        damage += getPercentage(WIZARD_BONUS, damage);
+        target.setLastTotalDamage(damage);
+        damage *= WIZARD_BONUS;
         target.takeDamage(Math.round(damage));
     }
 
@@ -78,8 +78,8 @@ public class Execute extends Ability {
     @Override
     public void affect(final Rogue target) {
         float damage = attack(target);
-        target.setLastTotalDamage(Math.round(damage));
-        damage += getPercentage(ROGUE_BONUS, damage);
+        target.setLastTotalDamage(damage);
+        damage *= ROGUE_BONUS;
         target.takeDamage(Math.round(damage));
     }
 }

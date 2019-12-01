@@ -10,11 +10,6 @@ public class StatusEffect {
     private Hero target;
     private float amount;
 
-    protected static int getPercentage(final int percent, final float of) {
-        float res = ((float) percent) / PERCENT * ((float) of);
-        return Math.round(res);
-    }
-
     public StatusEffect() {
         type = StatusEffectType.NONE;
         duration = 0;
@@ -64,8 +59,8 @@ public class StatusEffect {
      * Add the race bonus to the effect "amount".
      * @param raceBonus The race bonus (%)
      */
-    public void setRaceBonus(final int raceBonus) {
-        amount += getPercentage(raceBonus, amount);
+    public void setRaceBonus(final float raceBonus) {
+        amount *= raceBonus;
     }
 
     /**

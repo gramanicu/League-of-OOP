@@ -9,10 +9,10 @@ import maps.TerrainType;
 public class Wizard extends Hero {
     private static final int BASE_HP = 400;
     private static final int SCALING_HP = 30;
-    private static final int TERRAIN_MODIFIER = 10;
+    private static final float TERRAIN_MODIFIER = 1.1f;
     private static final TerrainType HOME_TERRAIN = TerrainType.DESERT;
 
-    private float damageTotal = 0;
+    private float damageTotal = 0f;
     private int deflected = 0;
 
     public Wizard(final Point position) {
@@ -98,11 +98,11 @@ public class Wizard extends Hero {
      * @return The terrain bonus for the hero
      */
     @Override
-    public int getTerrainBonus() {
+    public float getTerrainBonus() {
         if (getTerrain() == HOME_TERRAIN) {
             return TERRAIN_MODIFIER;
         } else {
-            return 0;
+            return 1f;
         }
     }
 

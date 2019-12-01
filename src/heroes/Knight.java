@@ -9,7 +9,7 @@ import maps.TerrainType;
 public class Knight extends Hero {
     private static final int BASE_HP = 900;
     private static final int SCALING_HP = 80;
-    public static final int TERRAIN_MODIFIER = 15;
+    public static final float TERRAIN_MODIFIER = 1.5f;
     public static final TerrainType HOME_TERRAIN = TerrainType.LAND;
 
     public Knight(final Point position) {
@@ -90,11 +90,11 @@ public class Knight extends Hero {
      * @return The terrain bonus for the hero
      */
     @Override
-    public int getTerrainBonus() {
+    public float getTerrainBonus() {
         if (getTerrain() == HOME_TERRAIN) {
             return TERRAIN_MODIFIER;
         } else {
-            return 0;
+            return 1f;
         }
     }
 }

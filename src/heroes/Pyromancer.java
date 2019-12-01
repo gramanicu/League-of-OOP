@@ -9,7 +9,7 @@ import maps.TerrainType;
 public class Pyromancer extends Hero {
     private static final int BASE_HP = 500;
     private static final int SCALING_HP = 50;
-    public static final int TERRAIN_MODIFIER = 25;
+    public static final float TERRAIN_MODIFIER = 1.25f;
     public static final TerrainType HOME_TERRAIN = TerrainType.VOLCANIC;
 
     public Pyromancer(final Point position) {
@@ -85,11 +85,11 @@ public class Pyromancer extends Hero {
      * @return The terrain bonus for the hero
      */
     @Override
-    public int getTerrainBonus() {
+    public float getTerrainBonus() {
         if (getTerrain() == HOME_TERRAIN) {
             return TERRAIN_MODIFIER;
         } else {
-            return 0;
+            return 1f;
         }
     }
 }

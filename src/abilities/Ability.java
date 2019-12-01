@@ -12,28 +12,12 @@ public abstract class Ability {
     protected Hero caster;
     protected StatusEffect statusEffect = new StatusEffect();
 
-    protected static float getPercentage(final int percent, final int of) {
-        float res = ((float) percent) / PERCENT * ((float) of);
-        return res;
-    }
-
-    protected static float getPercentage(final int percent, final float of) {
-        float res = ((float) percent) / PERCENT * of;
-        return res;
-    }
-
-    protected static float getPercentage(final float percent, final float of) {
-        float res = percent / PERCENT * of;
-        return res;
-    }
-
     /**
      * Amplifies the damage using the terrain bonus.
-     * @param damage The initial damage
      * @return The amplified damage
      */
-    protected float getTerrainBonus(final float damage) {
-        return getPercentage(caster.getTerrainBonus(), damage);
+    protected float getTerrainBonus() {
+        return caster.getTerrainBonus();
     }
 
     /**

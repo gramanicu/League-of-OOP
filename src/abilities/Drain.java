@@ -7,13 +7,13 @@ import heroes.Rogue;
 import heroes.Wizard;
 
 public class Drain extends Ability {
-    private static final int PERCENT = 20;
-    private static final int PERCENT_SCALING = 5;
-    private static final int FACTOR_PERCENT = 30;
-    private static final int ROGUE_BONUS = -20;
-    private static final int KNIGHT_BONUS = 20;
-    private static final int PYROMANCER_BONUS = -10;
-    private static final int WIZARD_BONUS = 5;
+    private static final float PERCENT = 0.2f;
+    private static final float PERCENT_SCALING = 0.05f;
+    private static final float FACTOR_PERCENT = 0.3f;
+    private static final float ROGUE_BONUS = 0.8f;
+    private static final float KNIGHT_BONUS = 1.2f;
+    private static final float PYROMANCER_BONUS = 0.9f;
+    private static final float WIZARD_BONUS = 1.05f;
 
     public Drain(final Wizard hero) {
         caster = hero;
@@ -27,10 +27,10 @@ public class Drain extends Ability {
     @Override
     protected float attack(final Hero target) {
         float percentage = PERCENT + PERCENT_SCALING * caster.getLevel();
-        percentage += getTerrainBonus(percentage);
-        float baseHP = Math.min(getPercentage(FACTOR_PERCENT, target.getMaxHp()),
+        percentage *= getTerrainBonus();
+        float baseHP = Math.min(FACTOR_PERCENT * target.getMaxHp(),
                 target.getHp());
-        return getPercentage(percentage, baseHP);
+        return percentage * baseHP;
     }
 
     /**
@@ -40,7 +40,7 @@ public class Drain extends Ability {
     public void affect(final Knight target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage += getPercentage(KNIGHT_BONUS, damage);
+        damage *= KNIGHT_BONUS;
         target.takeDamage(Math.round(damage));
     }
 
@@ -51,7 +51,7 @@ public class Drain extends Ability {
     public void affect(final Pyromancer target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage += getPercentage(PYROMANCER_BONUS, damage);
+        damage *= PYROMANCER_BONUS;
         target.takeDamage(Math.round(damage));
     }
 
@@ -62,7 +62,7 @@ public class Drain extends Ability {
     public void affect(final Wizard target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage += getPercentage(WIZARD_BONUS, damage);
+        damage *= WIZARD_BONUS;
         target.takeDamage(Math.round(damage));
     }
 
@@ -73,7 +73,7 @@ public class Drain extends Ability {
     public void affect(final Rogue target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage += getPercentage(ROGUE_BONUS, damage);
+        damage *= ROGUE_BONUS;
         target.takeDamage(Math.round(damage));
     }
 }

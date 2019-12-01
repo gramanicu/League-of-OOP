@@ -10,11 +10,11 @@ public class Backstab extends Ability {
     private static final int DAMAGE = 200;
     private static final int SCALING = 20;
     private static final int CRITICAL_PERIOD = 3;
-    private static final int CRITICAL_PERCENT = 50;
-    private static final int ROGUE_BONUS = 20;
-    private static final int KNIGHT_BONUS = -10;
-    private static final int PYROMANCER_BONUS = 25;
-    private static final int WIZARD_BONUS = 25;
+    private static final float CRITICAL_PERCENT = 1.5f;
+    private static final float ROGUE_BONUS = 1.2f;
+    private static final float KNIGHT_BONUS = 0.9f;
+    private static final float PYROMANCER_BONUS = 1.25f;
+    private static final float WIZARD_BONUS = 1.25f;
 
     public Backstab(final Rogue hero) {
         caster = hero;
@@ -30,10 +30,10 @@ public class Backstab extends Ability {
         float damage = DAMAGE + SCALING * caster.getLevel();
         if (((Rogue) caster).getAttacksCount() % CRITICAL_PERIOD == 0) {
             if (caster.getTerrainBonus() != 0) {
-                damage += getPercentage(CRITICAL_PERCENT, damage);
+                damage *= CRITICAL_PERCENT;
             }
         }
-        damage += getTerrainBonus(damage);
+        damage *= getTerrainBonus();
         return damage;
     }
 
@@ -43,8 +43,8 @@ public class Backstab extends Ability {
     @Override
     public void affect(final Knight target) {
         float damage = attack(target);
-        target.setLastTotalDamage(Math.round(damage));
-        damage += getPercentage(KNIGHT_BONUS, damage);
+        target.setLastTotalDamage(damage);
+        damage *= KNIGHT_BONUS;
         target.takeDamage(Math.round(damage));
     }
 
@@ -54,8 +54,8 @@ public class Backstab extends Ability {
     @Override
     public void affect(final Pyromancer target) {
         float damage = attack(target);
-        target.setLastTotalDamage(Math.round(damage));
-        damage += getPercentage(PYROMANCER_BONUS, damage);
+        target.setLastTotalDamage(damage);
+        damage *= PYROMANCER_BONUS;
         target.takeDamage(Math.round(damage));
     }
 
@@ -65,8 +65,8 @@ public class Backstab extends Ability {
     @Override
     public void affect(final Wizard target) {
         float damage = attack(target);
-        target.setLastTotalDamage(Math.round(damage));
-        damage += getPercentage(WIZARD_BONUS, damage);
+        target.setLastTotalDamage(damage);
+        damage *= WIZARD_BONUS;
         target.takeDamage(Math.round(damage));
     }
 
@@ -76,8 +76,8 @@ public class Backstab extends Ability {
     @Override
     public void affect(final Rogue target) {
         float damage = attack(target);
-        target.setLastTotalDamage(Math.round(damage));
-        damage += getPercentage(ROGUE_BONUS, damage);
+        target.setLastTotalDamage(damage);
+        damage *= ROGUE_BONUS;
         target.takeDamage(Math.round(damage));
     }
 }
