@@ -12,7 +12,7 @@ public class Slam extends Ability {
     private static final int STUN_DURATION = 1;
     private static final float PYROMANCER_BONUS = 0.9f;
     private static final float ROGUE_BONUS = 0.8f;
-    private static final float WIZARD_BONUS = 1.5f;
+    private static final float WIZARD_BONUS = 1.05f;
     private static final float KNIGHT_BONUS = 1.2f;
 
     public Slam(final Knight hero) {
