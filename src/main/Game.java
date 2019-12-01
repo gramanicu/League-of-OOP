@@ -129,23 +129,26 @@ public final class Game {
         boolean secondDead;
         secondDead = second.isDead();
 
-        first.attack(second);
-        second.attack(first);
+        // If no one is dead
+        if (!(firstDead || secondDead)) {
+            first.attack(second);
+            second.attack(first);
 
-        boolean firstAfter;
-        firstAfter = first.isDead();
-        boolean secondAfter;
-        secondAfter = second.isDead();
+            boolean firstAfter;
+            firstAfter = first.isDead();
+            boolean secondAfter;
+            secondAfter = second.isDead();
 
-        // If someone died
-        if (firstAfter || secondAfter) {
-            if (!(firstAfter && secondAfter)) {
-                if (!firstDead && firstAfter) {
-                    second.won(first);
-                }
+            // If someone died
+            if (firstAfter || secondAfter) {
+                if (!(firstAfter && secondAfter)) {
+                    if (!firstDead && firstAfter) {
+                        second.won(first);
+                    }
 
-                if (!secondDead && secondAfter) {
-                    first.won(second);
+                    if (!secondDead && secondAfter) {
+                        first.won(second);
+                    }
                 }
             }
         }
