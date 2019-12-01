@@ -130,7 +130,17 @@ public abstract class Hero {
         xp += amount;
         int oldLevel = level;
 
-        level = Math.max(0, (xp - XP_THRESHOLD)) / XP_SCALING;
+        if (xp < XP_THRESHOLD) {
+            level = 0;
+        } else {
+            int rem = xp - XP_THRESHOLD;
+            level = 0;
+            while (rem >= 0) {
+                rem -= XP_SCALING;
+                level++;
+            }
+        }
+
 
         if (level != oldLevel) {
             resetHP();
