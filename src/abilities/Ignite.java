@@ -30,7 +30,7 @@ public class Ignite extends Ability {
     protected float attack(final Hero target) {
         float damage = DAMAGE + SCALING * caster.getLevel();
         damage *= getTerrainBonus();
-        int overtimeDmg = OVERTIME_BASE + OVERTIME_SCALING * caster.getLevel();
+        float overtimeDmg = OVERTIME_BASE + OVERTIME_SCALING * caster.getLevel();
         overtimeDmg *= getTerrainBonus();
         statusEffect = new StatusEffect(target,
                 StatusEffectType.OVERTIME_DMG, overtimeDmg, OVERTIME_DURATION);

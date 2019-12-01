@@ -11,7 +11,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public final class Game {
+final class Game {
     private ArrayList<Hero> players;
     private ArrayList<ArrayList<Movement>> playerMovements;
     private int rounds;
@@ -23,7 +23,7 @@ public final class Game {
         playerMovements = new ArrayList<>();
     }
 
-    public static Game getInstance() {
+    static Game getInstance() {
         if (instance == null) {
             instance = new Game();
         }
@@ -34,7 +34,7 @@ public final class Game {
      * Load the game data.
      * @param inputPath The input file
      */
-    public void load(final String inputPath) {
+    void load(final String inputPath) {
 
         try {
             File file = new File(inputPath);
@@ -157,11 +157,15 @@ public final class Game {
     /**
      * Start the game.
      */
-    public void start() {
+    void start() {
         while (round != rounds) {
             movePlayers();
             fight();
-
+//            System.out.println("Round: " + round);
+//            for (Hero player : players) {
+//                System.out.println(player.getStats());
+//            }
+//            System.out.println("-----------END ROUND--------");
             round++;
         }
     }
@@ -170,7 +174,7 @@ public final class Game {
      * Print the player stats to output.
      * @param output The output file
      */
-    public void results(final String output) {
+    void results(final String output) {
         try {
             FileWriter fileWriter = new FileWriter(output);
             for (Hero player : players) {

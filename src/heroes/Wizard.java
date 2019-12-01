@@ -39,6 +39,7 @@ public class Wizard extends Hero {
                 deflect.affect(((Rogue) ability.getCaster()));
                 break;
             case WIZARD:
+                deflected++;
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: "

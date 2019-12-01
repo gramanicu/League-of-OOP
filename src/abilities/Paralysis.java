@@ -31,7 +31,7 @@ public class Paralysis extends Ability {
         damage *= getTerrainBonus();
         float overtimeDmg = damage;
         int duration = OVERTIME_DURATION;
-        if (caster.getTerrainBonus() != 0) {
+        if (caster.getTerrainBonus() != 1f) {
             duration = OVERTIME_BONUS;
         }
 
