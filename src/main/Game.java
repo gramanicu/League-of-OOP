@@ -1,5 +1,7 @@
 package main;
 
+import angels.Angel;
+import angels.AngelsFactory;
 import heroes.Hero;
 import heroes.HeroesFactory;
 import maps.Map;
@@ -13,13 +15,17 @@ import java.util.Scanner;
 final class Game {
     private ArrayList<Hero> players;
     private ArrayList<ArrayList<Movement>> playerMovements;
+    private ArrayList<ArrayList<Angel>> angelsToAdd;
     private int rounds;
     private int round;
     private static Game instance = null;
 
+    private static final int ANGEL_READ_PROPRIETES_COUNT = 3;
+
     private Game() {
         players = new ArrayList<>();
         playerMovements = new ArrayList<>();
+        angelsToAdd = new ArrayList<>();
     }
 
     static Game getInstance() {
@@ -99,10 +105,31 @@ final class Game {
                 }
                 playerMovements.add(roundMovements);
             }
+
+            for (int i = 0; i < roundCount; i++) {
+                ArrayList<Angel> roundAngels = new ArrayList<>();
+                int angelCount = input.nextInt();
+                if (angelCount != 0) {
+                    String row = input.next();
+                    String[] parts = row.split(",");
+                    for (int j = 0; j < angelCount; j++) {
+                        int multiplier = ANGEL_READ_PROPRIETES_COUNT;
+                        String angel = parts[j * multiplier];
+                        char x = parts[j * multiplier + 1].charAt(0);
+                        char y = parts[j * multiplier + 2].charAt(0);
+                        Point point = new Point(Character.getNumericValue(x),
+                                Character.getNumericValue(y));
+
+                        Angel newAngel = AngelsFactory.getInstance()
+                                .getAngel(angel, point);
+                        roundAngels.add(newAngel);
+                    }
+                    angelsToAdd.add(roundAngels);
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     private void movePlayers() {
