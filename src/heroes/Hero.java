@@ -257,6 +257,27 @@ public abstract class Hero {
         statusEffect.apply();
     }
 
+    public void applyStrategy() {
+        
+    }
+
+    /**
+     * @return The maximum treshold for strategy (as fraction denominator)
+     */
+    protected abstract int getMaxStratFraction();
+
+    /**
+     * @return The minimum treshold for strategy (as fraction denominator)
+     */
+    protected abstract int getMinStratFraction();
+
+    /**
+     * @param hp Set the hp to a specific value
+     */
+    public void setHp(final int hp) {
+        this.hp = hp;
+    }
+
     /**
      * Returns the info about the hero.
      * @return The information

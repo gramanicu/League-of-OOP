@@ -8,7 +8,10 @@ import maps.TerrainType;
 
 public class Pyromancer extends Hero {
     private static final int BASE_HP = 500;
-    private static final int SCALING_HP = 50;
+    private static final int SCALING_HP = 50
+    private static final int MIN_STRAT_FRACTION = 3;
+    private static final int MAX_STRAT_FRACTION = 2;
+
     public static final float TERRAIN_MODIFIER = 1.25f;
     public static final TerrainType HOME_TERRAIN = TerrainType.VOLCANIC;
 
@@ -92,4 +95,21 @@ public class Pyromancer extends Hero {
             return 1f;
         }
     }
+
+    /**
+     * @return The maximum treshold for strategy (as fraction denominator)
+     */
+    @Override
+    protected int getMaxStratFraction() {
+        return MAX_STRAT_FRACTION;
+    }
+
+    /**
+     * @return The minimum treshold for strategy (as fraction denominator)
+     */
+    @Override
+    protected int getMinStratFraction() {
+        return MIN_STRAT_FRACTION;
+    }
+
 }

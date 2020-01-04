@@ -11,6 +11,8 @@ public class Wizard extends Hero {
     private static final int SCALING_HP = 30;
     private static final float TERRAIN_MODIFIER = 1.1f;
     private static final TerrainType HOME_TERRAIN = TerrainType.DESERT;
+    private static final int MIN_STRAT_FRACTION = 3;
+    private static final int MAX_STRAT_FRACTION = 2;
 
     private float damageTotal = 0f;
     private int deflected = 0;
@@ -105,6 +107,22 @@ public class Wizard extends Hero {
         } else {
             return 1f;
         }
+    }
+
+    /**
+     * @return The maximum treshold for strategy (as fraction denominator)
+     */
+    @Override
+    protected int getMaxStratFraction() {
+        return MAX_STRAT_FRACTION;
+    }
+
+    /**
+     * @return The minimum treshold for strategy (as fraction denominator)
+     */
+    @Override
+    protected int getMinStratFraction() {
+        return MIN_STRAT_FRACTION;
     }
 
     /**

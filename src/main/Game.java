@@ -35,7 +35,6 @@ final class Game {
      * @param inputPath The input file
      */
     void load(final String inputPath) {
-
         try {
             File file = new File(inputPath);
             Scanner input = new Scanner(file);
@@ -108,6 +107,10 @@ final class Game {
 
     private void movePlayers() {
         for (int playerID = 0; playerID < players.size(); playerID++) {
+            // After the first move, before any other moves, the strategies apply
+            if (round != 0) {
+                players.get(playerID).applyStrategy();
+            }
             players.get(playerID).move(playerMovements.get(round).get(playerID));
         }
     }
