@@ -7,7 +7,6 @@ import maps.Movement;
 import maps.Point;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -64,6 +63,7 @@ final class Game {
                 Point point = new Point(col, row);
 
                 players.add(HeroesFactory.getInstance().getHero(type, point));
+                players.get(i).setId(i);
             }
 
             int roundCount = input.nextInt();
@@ -155,6 +155,14 @@ final class Game {
     }
 
     /**
+     * Returns the current round.
+     * @return The round number
+     */
+    int getRound() {
+        return round;
+    }
+
+    /**
      * Start the game.
      */
     void start() {
@@ -170,20 +178,7 @@ final class Game {
         }
     }
 
-    /**
-     * Print the player stats to output.
-     * @param output The output file
-     */
-    void results(final String output) {
-        try {
-            FileWriter fileWriter = new FileWriter(output);
-            for (Hero player : players) {
-                fileWriter.write(player.getStats());
-                fileWriter.write("\n");
-            }
-            fileWriter.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    ArrayList<Hero> getPlayers() {
+        return players;
     }
 }

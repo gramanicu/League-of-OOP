@@ -10,4 +10,18 @@ public abstract class Angel {
         this.type = type;
         this.position = position;
     }
+
+    /**
+     * @return The type of the angel (as a AngelType)
+     */
+    public AngelType getType() {
+        return type;
+    }
+
+    /**
+     * @return The position of the angel
+     */
+    public Point getPosition() {
+        return position;
+    }
 }

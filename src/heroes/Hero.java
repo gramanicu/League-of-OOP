@@ -17,6 +17,7 @@ public abstract class Hero {
     private final int hpScaling;
     private int maxHp;
     private float lastTotalDmg;
+    private int id;
     private Point position;
     private StatusEffect statusEffect;
     private Strategy strategy;
@@ -36,6 +37,21 @@ public abstract class Hero {
         this.position = position;
         this.lastTotalDmg = 0.0f;
         this.statusEffect = new StatusEffect();
+    }
+
+    /**
+     * @return The id of the hero/player
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Sets the id of the hero/player.
+     * @param id The id value
+     */
+    public void setId(final int id) {
+        this.id = id;
     }
 
     /**

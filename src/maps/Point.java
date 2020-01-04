@@ -15,6 +15,14 @@ public class Point {
         yPos = height;
     }
 
+    /**
+     * @return The position as a string
+     */
+    @Override
+    public String toString() {
+        return xPos + " " + yPos;
+    }
+
     public static void setBounds(final int width, final int height) {
         xBound = width;
         yBound = height;
@@ -66,7 +74,6 @@ public class Point {
     public int getY() {
         return yPos;
     }
-
 
     /**
      * Used to compare two points.
