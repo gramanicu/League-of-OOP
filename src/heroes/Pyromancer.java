@@ -5,12 +5,20 @@ import abilities.Fireblast;
 import abilities.Ignite;
 import maps.Point;
 import maps.TerrainType;
+import strategies.AttackStrategy;
+import strategies.DefendStrategy;
+import strategies.Strategy;
 
 public class Pyromancer extends Hero {
     private static final int BASE_HP = 500;
-    private static final int SCALING_HP = 50
+    private static final int SCALING_HP = 50;
     private static final int MIN_STRAT_FRACTION = 3;
     private static final int MAX_STRAT_FRACTION = 2;
+
+    private static final int ATTACK_HP_FRACTION = 4;
+    private static final int DEFEND_HP_FRACTION = 3;
+    private static final float ATTACK_STATS_PERCENT = 0.7f;
+    private static final float DEFEND_STATS_PERCENT = 0.3f;
 
     public static final float TERRAIN_MODIFIER = 1.25f;
     public static final TerrainType HOME_TERRAIN = TerrainType.VOLCANIC;
@@ -95,6 +103,29 @@ public class Pyromancer extends Hero {
             return 1f;
         }
     }
+
+    /**
+     * Use the AttackStrategy.
+     */
+    @Override
+    protected Strategy offensiveStrategy() {
+        Strategy strategy = new AttackStrategy();
+        strategy.setOrigin(this);
+        strategy.setValues(ATTACK_HP_FRACTION, ATTACK_STATS_PERCENT);
+        return strategy;
+    }
+
+    /**
+     * Use the DefendStrategy.
+     */
+    @Override
+    protected Strategy defensiveStrategy() {
+        Strategy strategy = new DefendStrategy();
+        strategy.setOrigin(this);
+        strategy.setValues(DEFEND_HP_FRACTION, DEFEND_STATS_PERCENT);
+        return strategy;
+    }
+
 
     /**
      * @return The maximum treshold for strategy (as fraction denominator)

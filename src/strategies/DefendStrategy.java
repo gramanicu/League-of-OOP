@@ -2,7 +2,7 @@ package strategies;
 
 import heroes.Hero;
 
-public class DefenseStrategy implements Strategy {
+public class DefendStrategy implements Strategy {
     private Hero origin;
     private int hpFrac;
     private float modifiersPerc;
@@ -32,7 +32,7 @@ public class DefenseStrategy implements Strategy {
      */
     @Override
     public float getModifiersPerc() {
-        return modifiersPerc;
+        return -modifiersPerc;
     }
 
     /**

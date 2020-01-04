@@ -6,6 +6,8 @@ import maps.Map;
 import maps.Movement;
 import maps.Point;
 import maps.TerrainType;
+import strategies.NormalStrategy;
+import strategies.Strategy;
 
 public abstract class Hero {
     private final HeroType type;
@@ -17,6 +19,7 @@ public abstract class Hero {
     private float lastTotalDmg;
     private Point position;
     private StatusEffect statusEffect;
+    private Strategy strategy;
 
     private static final int XP_THRESHOLD = 250;
     private static final int XP_SCALING = 50;
@@ -257,9 +260,40 @@ public abstract class Hero {
         statusEffect.apply();
     }
 
+    /**
+     * Apply the hero's strategy.
+     */
     public void applyStrategy() {
-        
+        if (statusEffect.canMove()) {
+            if (getHp() < ((float) getHp()) / getMinStratFraction()) {
+                strategy = offensiveStrategy();
+            } else if (getHp() < ((float) getHp()) / getMaxStratFraction()) {
+                strategy = defensiveStrategy();
+            } else {
+                strategy = new NormalStrategy();
+            }
+        } else {
+            strategy = new NormalStrategy();
+        }
+        strategy.apply();
     }
+
+    /**
+     * @return The modifier percent of the current strategy
+     */
+    public float getStrategyModifier() {
+        return strategy.getModifiersPerc();
+    }
+
+    /**
+     * Use the AttackStrategy.
+     */
+    protected abstract Strategy offensiveStrategy();
+
+    /**
+     * Use the DefendStrategy.
+     */
+    protected abstract Strategy defensiveStrategy();
 
     /**
      * @return The maximum treshold for strategy (as fraction denominator)

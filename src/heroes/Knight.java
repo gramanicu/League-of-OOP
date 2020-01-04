@@ -5,12 +5,20 @@ import abilities.Execute;
 import abilities.Slam;
 import maps.Point;
 import maps.TerrainType;
+import strategies.AttackStrategy;
+import strategies.DefendStrategy;
+import strategies.Strategy;
 
 public class Knight extends Hero {
     private static final int BASE_HP = 900;
     private static final int SCALING_HP = 80;
     private static final int MIN_STRAT_FRACTION = 3;
     private static final int MAX_STRAT_FRACTION = 2;
+
+    private static final int ATTACK_HP_FRACTION = 5;
+    private static final int DEFEND_HP_FRACTION = 4;
+    private static final float ATTACK_STATS_PERCENT = 0.5f;
+    private static final float DEFEND_STATS_PERCENT = 0.2f;
 
     public static final float TERRAIN_MODIFIER = 1.15f;
     public static final TerrainType HOME_TERRAIN = TerrainType.LAND;
@@ -99,6 +107,28 @@ public class Knight extends Hero {
         } else {
             return 1f;
         }
+    }
+
+    /**
+     * Use the AttackStrategy.
+     */
+    @Override
+    protected Strategy offensiveStrategy() {
+        Strategy strategy = new AttackStrategy();
+        strategy.setOrigin(this);
+        strategy.setValues(ATTACK_HP_FRACTION, ATTACK_STATS_PERCENT);
+        return strategy;
+    }
+
+    /**
+     * Use the DefendStrategy.
+     */
+    @Override
+    protected Strategy defensiveStrategy() {
+        Strategy strategy = new DefendStrategy();
+        strategy.setOrigin(this);
+        strategy.setValues(DEFEND_HP_FRACTION, DEFEND_STATS_PERCENT);
+        return strategy;
     }
 
     /**

@@ -44,7 +44,7 @@ public class Backstab extends Ability {
     public void affect(final Knight target) {
         float damage = attack(target);
         target.setLastTotalDamage(damage);
-        damage *= KNIGHT_BONUS;
+        damage *= (KNIGHT_BONUS + caster.getStrategyModifier());
         target.takeDamage(Math.round(damage));
     }
 

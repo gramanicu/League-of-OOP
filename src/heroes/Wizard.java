@@ -5,6 +5,9 @@ import abilities.Deflect;
 import abilities.Drain;
 import maps.Point;
 import maps.TerrainType;
+import strategies.AttackStrategy;
+import strategies.DefendStrategy;
+import strategies.Strategy;
 
 public class Wizard extends Hero {
     private static final int BASE_HP = 400;
@@ -13,6 +16,11 @@ public class Wizard extends Hero {
     private static final TerrainType HOME_TERRAIN = TerrainType.DESERT;
     private static final int MIN_STRAT_FRACTION = 3;
     private static final int MAX_STRAT_FRACTION = 2;
+
+    private static final int ATTACK_HP_FRACTION = 10;
+    private static final int DEFEND_HP_FRACTION = 5;
+    private static final float ATTACK_STATS_PERCENT = 0.6f;
+    private static final float DEFEND_STATS_PERCENT = 0.2f;
 
     private float damageTotal = 0f;
     private int deflected = 0;
@@ -107,6 +115,29 @@ public class Wizard extends Hero {
         } else {
             return 1f;
         }
+    }
+
+
+    /**
+     * Use the AttackStrategy.
+     */
+    @Override
+    protected Strategy offensiveStrategy() {
+        Strategy strategy = new AttackStrategy();
+        strategy.setOrigin(this);
+        strategy.setValues(ATTACK_HP_FRACTION, ATTACK_STATS_PERCENT);
+        return strategy;
+    }
+
+    /**
+     * Use the DefendStrategy.
+     */
+    @Override
+    protected Strategy defensiveStrategy() {
+        Strategy strategy = new DefendStrategy();
+        strategy.setOrigin(this);
+        strategy.setValues(DEFEND_HP_FRACTION, DEFEND_STATS_PERCENT);
+        return strategy;
     }
 
     /**

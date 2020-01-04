@@ -44,7 +44,7 @@ public class Ignite extends Ability {
     public void affect(final Knight target) {
         float damage = attack(target);
         target.setLastTotalDamage(damage);
-        damage *= KNIGHT_BONUS;
+        damage *= (KNIGHT_BONUS + caster.getStrategyModifier());
         statusEffect.setRaceBonus(KNIGHT_BONUS);
         target.takeDamage(Math.round(damage));
         target.setStatusEffect(statusEffect);
