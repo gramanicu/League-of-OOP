@@ -104,7 +104,7 @@ public abstract class Angel {
      * @param value The value of the buff/debuff
      */
     protected void modifyStats(final Hero target, final int value) {
-        target.modifyAngelStatsModifier(value);
+        target.increaseStatsModifier(value);
     }
 
     /**

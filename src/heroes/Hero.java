@@ -127,6 +127,28 @@ public abstract class Hero {
     }
 
     /**
+     * Take damage from an angel.
+     * @param damage The amount of damage
+     */
+    public void takeAngelDamage(final int damage) {
+        hp -= damage;
+        if (isDead()) {
+            GreatWizard.getInstance().playerKilled(this);
+        }
+    }
+
+    /**
+     * Receive some hp from the angel.
+     * @param amount The amount of hp
+     */
+    public void receiveAngelHP(final int amount) {
+        hp += amount;
+        if (hp > maxHp) {
+            hp = maxHp;
+        }
+    }
+
+    /**
      * The here will take residual damage, like the damage from pyro's ignite
      * or wizard's deflection.
      * @param damage The amount of damage
@@ -366,11 +388,19 @@ public abstract class Hero {
     protected abstract int getMinStratFraction();
 
     /**
-     * Modify the value of the angel stats modifier.
-     * @param value
+     * Increase the value of the angel stats modifier.
+     * @param value The amount to increase
      */
-    public void modifyAngelStatsModifier(final float value) {
+    public void increaseStatsModifier(final float value) {
         angelStatsModifier += value;
+    }
+
+    /**
+     * Modify the value of the angel stats modifier.
+     * @param value The amount to decrease
+     */
+    public void decreaseStatsModifier(final float value) {
+        angelStatsModifier -= value;
     }
 
     /**

@@ -13,8 +13,28 @@ public class LifeGiver extends Angel {
         super(AngelType.LifeGiver, position);
     }
 
+    /**
+     * Give a buff to the target hero.
+     * @param target The hero to be buffed
+     */
     @Override
     public void apply(final Hero target) {
-
+        buffText(target);
+        switch (target.getType()) {
+            case KNIGHT:
+                target.receiveAngelHP(KNIGHT_HP);
+                break;
+            case PYROMANCER:
+                target.receiveAngelHP(PYROMANCER_HP);
+                break;
+            case ROGUE:
+                target.receiveAngelHP(ROGUE_HP);
+                break;
+            case WIZARD:
+                target.receiveAngelHP(WIZARD_HP);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + target.getType());
+        }
     }
 }

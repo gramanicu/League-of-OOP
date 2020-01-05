@@ -13,8 +13,28 @@ public class XPAngel extends Angel {
         super(AngelType.XPAngel, position);
     }
 
+    /**
+     * Give a buff to the target hero.
+     * @param target The hero to be buffed
+     */
     @Override
     public void apply(final Hero target) {
-
+        buffText(target);
+        switch (target.getType()) {
+            case KNIGHT:
+                target.giveXP(KNIGHT_XP);
+                break;
+            case PYROMANCER:
+                target.giveXP(PYROMANCER_XP);
+                break;
+            case ROGUE:
+                target.giveXP(ROGUE_XP);
+                break;
+            case WIZARD:
+                target.giveXP(WIZARD_XP);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + target.getType());
+        }
     }
 }

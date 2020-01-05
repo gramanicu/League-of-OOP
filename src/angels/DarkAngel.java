@@ -13,8 +13,28 @@ public class DarkAngel extends Angel {
         super(AngelType.DarkAngel, position);
     }
 
+    /**
+     * Give a debuff to the target hero.
+     * @param target The hero to be debuffed
+     */
     @Override
     public void apply(final Hero target) {
-
+        debuffText(target);
+        switch (target.getType()) {
+            case KNIGHT:
+                target.takeAngelDamage(KNIGHT_HP);
+                break;
+            case PYROMANCER:
+                target.takeAngelDamage(PYROMANCER_HP);
+                break;
+            case ROGUE:
+                target.takeAngelDamage(ROGUE_HP);
+                break;
+            case WIZARD:
+                target.takeAngelDamage(WIZARD_HP);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + target.getType());
+        }
     }
 }

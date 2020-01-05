@@ -18,8 +18,32 @@ public class Dracula extends Angel {
         super(AngelType.Dracula, position);
     }
 
+    /**
+     * Give a debuff to the target hero.
+     * @param target The hero to be debuffed
+     */
     @Override
     public void apply(final Hero target) {
-
+        debuffText(target);
+        switch (target.getType()) {
+            case KNIGHT:
+                target.takeAngelDamage(KNIGHT_HP);
+                target.decreaseStatsModifier(KNIGHT_MODIFIER);
+                break;
+            case PYROMANCER:
+                target.takeAngelDamage(PYROMANCER_HP);
+                target.decreaseStatsModifier(PYROMANCER_MODIFIER);
+                break;
+            case ROGUE:
+                target.takeAngelDamage(ROGUE_HP);
+                target.decreaseStatsModifier(ROGUE_MODIFIER);
+                break;
+            case WIZARD:
+                target.takeAngelDamage(WIZARD_HP);
+                target.decreaseStatsModifier(WIZARD_MODIFIER);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + target.getType());
+        }
     }
 }

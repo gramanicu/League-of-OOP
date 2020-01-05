@@ -195,7 +195,7 @@ public final class GreatWizard {
     }
 
     /**
-     * Message to show when a player/hero reached a level
+     * Message to show when a player/hero reached a level.
      * @param target The player/hero affected
      * @param level The level reached
      */

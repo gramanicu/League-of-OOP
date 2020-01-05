@@ -22,16 +22,16 @@ public class DamageAngel extends Angel {
         buffText(target);
         switch (target.getType()) {
             case KNIGHT:
-                target.modifyAngelStatsModifier(KNIGHT_MODIFIER);
+                target.increaseStatsModifier(KNIGHT_MODIFIER);
                 break;
             case PYROMANCER:
-                target.modifyAngelStatsModifier(PYROMANCER_MODIFIER);
+                target.increaseStatsModifier(PYROMANCER_MODIFIER);
                 break;
             case ROGUE:
-                target.modifyAngelStatsModifier(ROGUE_MODIFIER);
+                target.increaseStatsModifier(ROGUE_MODIFIER);
                 break;
             case WIZARD:
-                target.modifyAngelStatsModifier(WIZARD_MODIFIER);
+                target.increaseStatsModifier(WIZARD_MODIFIER);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + target.getType());

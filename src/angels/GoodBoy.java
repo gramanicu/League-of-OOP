@@ -18,8 +18,32 @@ public class GoodBoy extends Angel {
         super(AngelType.GoodBoy, position);
     }
 
+    /**
+     * Give a buff to the target hero.
+     * @param target The hero to be buffed
+     */
     @Override
     public void apply(final Hero target) {
-
+        buffText(target);
+        switch (target.getType()) {
+            case KNIGHT:
+                target.receiveAngelHP(KNIGHT_HP);
+                target.increaseStatsModifier(KNIGHT_MODIFIER);
+                break;
+            case PYROMANCER:
+                target.receiveAngelHP(PYROMANCER_HP);
+                target.increaseStatsModifier(PYROMANCER_MODIFIER);
+                break;
+            case ROGUE:
+                target.receiveAngelHP(ROGUE_HP);
+                target.increaseStatsModifier(ROGUE_MODIFIER);
+                break;
+            case WIZARD:
+                target.receiveAngelHP(WIZARD_HP);
+                target.increaseStatsModifier(WIZARD_MODIFIER);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + target.getType());
+        }
     }
 }
