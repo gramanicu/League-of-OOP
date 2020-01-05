@@ -1,2 +1,4 @@
 Starting audit...
+[ERROR] /home/nicolae/College/temePOO/League-of-OOP/src/heroes/Hero.java:5:8: Unused import - main.GreatWizard. [UnusedImports]
 Audit done.
+Checkstyle ends with 1 errors.

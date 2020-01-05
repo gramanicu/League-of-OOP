@@ -2,6 +2,7 @@ package heroes;
 
 import abilities.Ability;
 import abilities.StatusEffect;
+import main.GreatWizard;
 import maps.Map;
 import maps.Movement;
 import maps.Point;
@@ -21,6 +22,7 @@ public abstract class Hero {
     private Point position;
     private StatusEffect statusEffect;
     private Strategy strategy;
+    private float angelStatsModifier = 0f;
 
     private static final int XP_THRESHOLD = 250;
     private static final int XP_SCALING = 50;
@@ -142,6 +144,27 @@ public abstract class Hero {
     }
 
     /**
+     * Get the amount of xp needed for level up.
+     * @return The xp amount
+     */
+    public int getXPUntilLevel() {
+        int rem = xp - XP_THRESHOLD;
+        while (rem >= 0) {
+            rem -= XP_SCALING;
+        }
+
+        rem += XP_SCALING;
+        return rem;
+    }
+
+    /**
+     * Level up the hero.
+     */
+    public void levelUP() {
+        giveXP(getXPUntilLevel());
+    }
+
+    /**
      * Gives the player xp.
      * @param amount The amount of xp
      */
@@ -160,9 +183,12 @@ public abstract class Hero {
             }
         }
 
-
         if (level != oldLevel) {
             resetHP();
+        }
+
+        for (int i = oldLevel + 1; i <= level; i++) {
+            GreatWizard.getInstance().playerLevel(this, i);
         }
     }
 
@@ -295,10 +321,28 @@ public abstract class Hero {
     }
 
     /**
+     * Kill this hero.
+     */
+    public void kill() {
+        if (!isDead()) {
+            hp = 0;
+        }
+    }
+
+    /**
+     * Bring this hero back to life.
+     */
+    public void resurrect() {
+        if (isDead()) {
+            hp = 1;
+        }
+    }
+
+    /**
      * @return The modifier percent of the current strategy
      */
-    public float getStrategyModifier() {
-        return strategy.getModifiersPerc();
+    public float getStatsModifier() {
+        return strategy.getModifiersPerc() + angelStatsModifier;
     }
 
     /**
@@ -320,6 +364,14 @@ public abstract class Hero {
      * @return The minimum treshold for strategy (as fraction denominator)
      */
     protected abstract int getMinStratFraction();
+
+    /**
+     * Modify the value of the angel stats modifier.
+     * @param value
+     */
+    public void modifyAngelStatsModifier(final float value) {
+        angelStatsModifier += value;
+    }
 
     /**
      * @param hp Set the hp to a specific value

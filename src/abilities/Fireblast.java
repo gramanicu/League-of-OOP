@@ -37,7 +37,7 @@ public class Fireblast extends Ability {
     public void affect(final Knight target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage *= (KNIGHT_BONUS + caster.getStrategyModifier());
+        damage *= (KNIGHT_BONUS + caster.getStatsModifier());
         target.takeDamage(Math.round(damage));
     }
 

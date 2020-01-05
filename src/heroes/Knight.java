@@ -29,7 +29,6 @@ public class Knight extends Hero {
 
     /**
      * Get affected by an ability.
-     *
      * @param ability The ability that will affect the hero
      */
     @Override
@@ -39,7 +38,6 @@ public class Knight extends Hero {
 
     /**
      * Attack another hero.
-     *
      * @param target The targeted knight
      */
     @Override
@@ -52,7 +50,6 @@ public class Knight extends Hero {
 
     /**
      * Attack another hero.
-     *
      * @param target The targeted pyromancer
      */
     @Override
@@ -65,7 +62,6 @@ public class Knight extends Hero {
 
     /**
      * Attack another hero.
-     *
      * @param target The targeted wizard
      */
     @Override
@@ -78,7 +74,6 @@ public class Knight extends Hero {
 
     /**
      * Attack another hero.
-     *
      * @param target The targeted rogue
      */
     @Override

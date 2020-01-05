@@ -47,7 +47,7 @@ public class Paralysis extends Ability {
     public void affect(final Knight target) {
         float damage = attack(target);
         target.setLastTotalDamage(damage);
-        damage *= (KNIGHT_BONUS + caster.getStrategyModifier());
+        damage *= (KNIGHT_BONUS + caster.getStatsModifier());
         statusEffect.setRaceBonus(KNIGHT_BONUS);
         target.takeDamage(Math.round(damage));
         target.setStatusEffect(statusEffect);

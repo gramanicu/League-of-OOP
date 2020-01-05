@@ -7,10 +7,9 @@ import heroes.Rogue;
 import heroes.Wizard;
 
 public abstract class Ability {
-    private static final float PERCENT = 100.0f;
-
     protected Hero caster;
     protected StatusEffect statusEffect = new StatusEffect();
+
 
     /**
      * Amplifies the damage using the terrain bonus.
@@ -53,4 +52,5 @@ public abstract class Ability {
     public Hero getCaster() {
         return caster;
     }
+
 }

@@ -1,5 +1,6 @@
 package angels;
 
+import heroes.Hero;
 import maps.Point;
 
 public class LifeGiver extends Angel {
@@ -10,5 +11,10 @@ public class LifeGiver extends Angel {
 
     protected LifeGiver(final Point position) {
         super(AngelType.LifeGiver, position);
+    }
+
+    @Override
+    public void apply(final Hero target) {
+
     }
 }

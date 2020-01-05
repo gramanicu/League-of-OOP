@@ -14,7 +14,7 @@ public final class GreatWizard {
 
     private GreatWizard() { }
 
-    static void setOutput(final String output) {
+    void setOutput(final String output) {
         try {
             fileWriter = new FileWriter(output);
         } catch (IOException e) {
@@ -30,7 +30,7 @@ public final class GreatWizard {
         }
     }
 
-    static GreatWizard getInstance() {
+    public static GreatWizard getInstance() {
         if (instance == null) {
             instance = new GreatWizard();
         }
@@ -117,7 +117,7 @@ public final class GreatWizard {
      * @param heroType The hit player/hero
      * @param playerID The player/hero id
      */
-    void angelHit(final AngelType angelType, final HeroType heroType,
+    public void angelHit(final AngelType angelType, final HeroType heroType,
                          final int playerID) {
         String angel = getAngel(angelType);
         String hero = getHero(heroType);
@@ -135,7 +135,7 @@ public final class GreatWizard {
      * @param heroType The helped hero/player
      * @param playerID The id of the hero/player
      */
-    void angelHelp(final AngelType angelType, final HeroType heroType,
+    public void angelHelp(final AngelType angelType, final HeroType heroType,
                          final int playerID) {
         String angel = getAngel(angelType);
         String hero = getHero(heroType);
@@ -172,6 +172,11 @@ public final class GreatWizard {
         String killer = getHero(source.getType());
         String output = String.format("Player %s %d was killed by %s %d\n",
                 killed, target.getId(), killer, source.getId());
+        try {
+            fileWriter.write(output);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -182,6 +187,27 @@ public final class GreatWizard {
         String killed = getHero(target.getType());
         String output = String.format("Player %s %d was killed by an angel\n",
                 killed, target.getId());
+        try {
+            fileWriter.write(output);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Message to show when a player/hero reached a level
+     * @param target The player/hero affected
+     * @param level The level reached
+     */
+    public void playerLevel(final Hero target, final int level) {
+        String hero = getHero(target.getType());
+        String output = String.format("%s %d was reached lvl %d\n",
+                hero, target.getId(), level);
+        try {
+            fileWriter.write(output);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     void printStats() {

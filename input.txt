@@ -1,5 +1,5 @@
 1 1
-D
+L
 2
 K 0 0
 K 0 0
@@ -7,4 +7,4 @@ K 0 0
 __
 __
 0
-1 TheDoomer,0,0
+1 DamageAngel,0,0

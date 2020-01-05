@@ -51,7 +51,7 @@ public class Deflect extends Ability {
     @Override
     public void affect(final Knight target) {
         float percent = attack(target);
-        percent *= (KNIGHT_BONUS + caster.getStrategyModifier());
+        percent *= (KNIGHT_BONUS + caster.getStatsModifier());
         int damage = damage(percent);
         target.setLastTotalDamage(damage);
         target.takeDamage(damage);

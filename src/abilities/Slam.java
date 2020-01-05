@@ -40,7 +40,7 @@ public class Slam extends Ability {
     public void affect(final Knight target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage *= KNIGHT_BONUS + caster.getStrategyModifier();
+        damage *= KNIGHT_BONUS + caster.getStatsModifier();
         target.takeDamage(Math.round(damage));
         target.setStatusEffect(statusEffect);
     }
@@ -52,7 +52,7 @@ public class Slam extends Ability {
     public void affect(final Pyromancer target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage *= PYROMANCER_BONUS + caster.getStrategyModifier();
+        damage *= PYROMANCER_BONUS + caster.getStatsModifier();
         target.takeDamage(Math.round(damage));
         target.setStatusEffect(statusEffect);
     }
@@ -64,7 +64,7 @@ public class Slam extends Ability {
     public void affect(final Wizard target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage *= WIZARD_BONUS + caster.getStrategyModifier();
+        damage *= WIZARD_BONUS + caster.getStatsModifier();
         target.takeDamage(Math.round(damage));
         target.setStatusEffect(statusEffect);
     }
@@ -76,7 +76,7 @@ public class Slam extends Ability {
     public void affect(final Rogue target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage *= ROGUE_BONUS + caster.getStrategyModifier();
+        damage *= ROGUE_BONUS + caster.getStatsModifier();
         target.takeDamage(Math.round(damage));
         target.setStatusEffect(statusEffect);
     }

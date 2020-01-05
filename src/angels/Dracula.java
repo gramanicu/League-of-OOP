@@ -1,5 +1,6 @@
 package angels;
 
+import heroes.Hero;
 import maps.Point;
 
 public class Dracula extends Angel {
@@ -15,5 +16,10 @@ public class Dracula extends Angel {
 
     protected Dracula(final Point position) {
         super(AngelType.Dracula, position);
+    }
+
+    @Override
+    public void apply(final Hero target) {
+
     }
 }

@@ -14,6 +14,7 @@ import java.util.Scanner;
 
 final class Game {
     private ArrayList<Hero> players;
+    private ArrayList<Angel> angels;
     private ArrayList<ArrayList<Movement>> playerMovements;
     private ArrayList<ArrayList<Angel>> angelsToAdd;
     private int rounds;
@@ -24,6 +25,7 @@ final class Game {
 
     private Game() {
         players = new ArrayList<>();
+        angels = new ArrayList<>();
         playerMovements = new ArrayList<>();
         angelsToAdd = new ArrayList<>();
     }
@@ -124,8 +126,8 @@ final class Game {
                                 .getAngel(angel, point);
                         roundAngels.add(newAngel);
                     }
-                    angelsToAdd.add(roundAngels);
                 }
+                angelsToAdd.add(roundAngels);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -194,14 +196,38 @@ final class Game {
      */
     void start() {
         while (round != rounds) {
+            GreatWizard.getInstance().printRound();
             movePlayers();
             fight();
-//            System.out.println("Round: " + round);
-//            for (Hero player : players) {
-//                System.out.println(player.getStats());
-//            }
-//            System.out.println("-----------END ROUND--------");
+            addAngels();
+            checkAngels();
             round++;
+        }
+        GreatWizard.getInstance().printStats();
+    }
+
+    /**
+     * Spawn the angels.
+     */
+    void addAngels() {
+        if (round < angelsToAdd.size()) {
+            for (Angel angel : angelsToAdd.get(round)) {
+                angels.add(angel);
+                GreatWizard.getInstance().angelSpawned(angel);
+            }
+        }
+    }
+
+    /**
+     * Apply the angels effects.
+     */
+    void checkAngels() {
+        for (Angel angel : angels) {
+            for (Hero hero : players) {
+                if (hero.getPosition().equals(angel.getPosition())) {
+                    angel.apply(hero);
+                }
+            }
         }
     }
 

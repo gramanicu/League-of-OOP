@@ -1,5 +1,6 @@
 package angels;
 
+import heroes.Hero;
 import maps.Point;
 
 public class Spawner extends Angel {
@@ -10,5 +11,10 @@ public class Spawner extends Angel {
 
     protected Spawner(final Point position) {
         super(AngelType.Spawner, position);
+    }
+
+    @Override
+    public void apply(final Hero target) {
+
     }
 }
