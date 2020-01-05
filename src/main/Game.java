@@ -201,9 +201,17 @@ final class Game {
             fight();
             addAngels();
             checkAngels();
+            removeAngels();
             round++;
         }
         GreatWizard.getInstance().printStats();
+    }
+
+    /**
+     * Remove angels at the end of the round.
+     */
+    void removeAngels() {
+        angels.clear();
     }
 
     /**
