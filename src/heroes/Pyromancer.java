@@ -12,8 +12,8 @@ import strategies.Strategy;
 public class Pyromancer extends Hero {
     private static final int BASE_HP = 500;
     private static final int SCALING_HP = 50;
-    private static final int MIN_STRAT_FRACTION = 3;
-    private static final int MAX_STRAT_FRACTION = 2;
+    private static final int MIN_STRAT_FRACTION = 4;
+    private static final int MAX_STRAT_FRACTION = 3;
 
     private static final int ATTACK_HP_FRACTION = 4;
     private static final int DEFEND_HP_FRACTION = 3;
