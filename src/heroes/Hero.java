@@ -202,7 +202,7 @@ public abstract class Hero {
             }
         }
 
-        if (level != oldLevel) {
+        if (level != oldLevel && !isDead()) {
             resetHP();
         }
 
@@ -228,9 +228,9 @@ public abstract class Hero {
      * Give the winner his reward.
      * @param defeated The defeated player
      */
-    public void won(final Hero defeated) {
+    public void won(final Hero defeated, final int defeatedLevel) {
         int xpToAdd = Math.max(0, LVL_XP_BASE
-                - (this.getLevel() - defeated.getLevel()) * LVL_XP_SCALING);
+                - (this.getLevel() - defeatedLevel) * LVL_XP_SCALING);
 
         giveXP(xpToAdd);
     }
