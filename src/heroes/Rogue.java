@@ -12,8 +12,8 @@ import strategies.Strategy;
 public class Rogue extends Hero {
     private static final int BASE_HP = 600;
     private static final int SCALING_HP = 40;
-    private static final int MIN_STRAT_FRACTION = 3;
-    private static final int MAX_STRAT_FRACTION = 2;
+    private static final int MIN_STRAT_FRACTION = 7;
+    private static final int MAX_STRAT_FRACTION = 5;
 
     private static final int ATTACK_HP_FRACTION = 7;
     private static final int DEFEND_HP_FRACTION = 2;
