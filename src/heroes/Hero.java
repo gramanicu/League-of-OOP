@@ -355,6 +355,7 @@ public abstract class Hero {
     public void resurrect() {
         if (isDead()) {
             hp = 1;
+            GreatWizard.getInstance().playerResurrected(this);
         }
     }
 

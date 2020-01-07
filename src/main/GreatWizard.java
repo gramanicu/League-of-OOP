@@ -195,6 +195,21 @@ public final class GreatWizard {
     }
 
     /**
+     * Message to show when a player was resurrected by an angel.
+     * @param target The player resurrected
+     */
+    public void playerResurrected(final Hero target) {
+        String resurrected = getHero(target.getType());
+        String output = String.format("Player %s %d was brought to life by an angel\n",
+                resurrected, target.getId());
+        try {
+            fileWriter.write(output);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Message to show when a player/hero reached a level.
      * @param target The player/hero affected
      * @param level The level reached
