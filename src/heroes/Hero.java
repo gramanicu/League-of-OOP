@@ -322,10 +322,17 @@ public abstract class Hero {
     }
 
     /**
+     * @return If the player can move
+     */
+    public boolean canMove() {
+        return statusEffect.canMove();
+    }
+
+    /**
      * Apply the hero's strategy.
      */
-    public void applyStrategy() {
-        if (statusEffect.canMove()) {
+    public void applyStrategy(final boolean canMove) {
+        if (canMove) {
             if (getHp() < ((float) getMaxHp()) / getMinStratFraction()) {
                 strategy = defensiveStrategy();
             } else if (getHp() < ((float) getMaxHp()) / getMaxStratFraction()) {

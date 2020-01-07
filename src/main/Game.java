@@ -132,8 +132,9 @@ final class Game {
 
     private void movePlayers() {
         for (int playerID = 0; playerID < players.size(); playerID++) {
-            players.get(playerID).applyStrategy();
+            boolean canMove = players.get(playerID).canMove();
             players.get(playerID).move(playerMovements.get(round).get(playerID));
+            players.get(playerID).applyStrategy(canMove);
         }
     }
 
