@@ -169,13 +169,8 @@ public abstract class Hero {
      * @return The xp amount
      */
     public int getXPUntilLevel() {
-        int rem = xp - XP_THRESHOLD;
-        while (rem >= 0) {
-            rem -= XP_SCALING;
-        }
-
-        rem += XP_SCALING;
-        return rem;
+        int nextLvlXP = XP_THRESHOLD + XP_SCALING * level;
+        return nextLvlXP - xp;
     }
 
     /**
