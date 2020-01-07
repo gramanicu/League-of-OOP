@@ -48,7 +48,7 @@ public class Paralysis extends Ability {
         float damage = attack(target);
         target.setLastTotalDamage(damage);
         damage *= KNIGHT_BONUS + caster.getStatsModifier();
-        statusEffect.setRaceBonus(KNIGHT_BONUS);
+        statusEffect.setRaceBonus(KNIGHT_BONUS + caster.getStatsModifier());
         target.takeDamage(Math.round(damage));
         target.setStatusEffect(statusEffect);
     }
@@ -61,7 +61,7 @@ public class Paralysis extends Ability {
         float damage = attack(target);
         target.setLastTotalDamage(damage);
         damage *= PYROMANCER_BONUS + caster.getStatsModifier();
-        statusEffect.setRaceBonus(PYROMANCER_BONUS);
+        statusEffect.setRaceBonus(PYROMANCER_BONUS + caster.getStatsModifier());
         target.takeDamage(Math.round(damage));
         target.setStatusEffect(statusEffect);
     }
@@ -74,7 +74,7 @@ public class Paralysis extends Ability {
         float damage = attack(target);
         target.setLastTotalDamage(damage);
         damage *= WIZARD_BONUS + caster.getStatsModifier();
-        statusEffect.setRaceBonus(WIZARD_BONUS);
+        statusEffect.setRaceBonus(WIZARD_BONUS + caster.getStatsModifier());
         target.takeDamage(Math.round(damage));
         target.setStatusEffect(statusEffect);
     }
@@ -87,7 +87,7 @@ public class Paralysis extends Ability {
         float damage = attack(target);
         target.setLastTotalDamage(damage);
         damage *= ROGUE_BONUS + caster.getStatsModifier();
-        statusEffect.setRaceBonus(ROGUE_BONUS);
+        statusEffect.setRaceBonus(ROGUE_BONUS + caster.getStatsModifier());
         target.takeDamage(Math.round(damage));
         target.setStatusEffect(statusEffect);
     }
