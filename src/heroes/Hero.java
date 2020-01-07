@@ -326,10 +326,10 @@ public abstract class Hero {
      */
     public void applyStrategy() {
         if (statusEffect.canMove()) {
-            if (getHp() < ((float) getHp()) / getMinStratFraction()) {
-                strategy = offensiveStrategy();
-            } else if (getHp() < ((float) getHp()) / getMaxStratFraction()) {
+            if (getHp() < ((float) getMaxHp()) / getMinStratFraction()) {
                 strategy = defensiveStrategy();
+            } else if (getHp() < ((float) getMaxHp()) / getMaxStratFraction()) {
+                strategy = offensiveStrategy();
             } else {
                 strategy = new NormalStrategy();
             }

@@ -27,7 +27,7 @@ public class Fireblast extends Ability {
     protected float attack(final Hero target) {
         float damage = DAMAGE + SCALING * caster.getLevel();
         damage *= getTerrainBonus();
-        return damage;
+        return Math.round(damage);
     }
 
     /**

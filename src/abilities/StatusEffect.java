@@ -24,7 +24,7 @@ public class StatusEffect {
     }
 
     public StatusEffect(final Hero target, final StatusEffectType type,
-                        final int amount, final int duration) {
+                        final float amount, final int duration) {
         this.type = type;
         this.duration = duration;
         this.target = target;
@@ -32,7 +32,7 @@ public class StatusEffect {
     }
 
     public StatusEffect(final Hero target, final StatusEffectType type,
-                        final float amount, final int duration) {
+                        final int amount, final int duration) {
         this.type = type;
         this.duration = duration;
         this.target = target;
