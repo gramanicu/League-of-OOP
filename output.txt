@@ -24,5 +24,5 @@ Dracula hit Rogue 0
 Dracula hit Rogue 1
 
 ~~ Results ~~
-R 3 350 125 0 0
-R 3 350 125 0 0
+R 3 350 126 0 0
+R 3 350 126 0 0

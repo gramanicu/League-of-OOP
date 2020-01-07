@@ -10,6 +10,8 @@ import maps.TerrainType;
 import strategies.NormalStrategy;
 import strategies.Strategy;
 
+import java.util.ArrayList;
+
 public abstract class Hero {
     private final HeroType type;
     private int xp;
@@ -22,7 +24,7 @@ public abstract class Hero {
     private Point position;
     private StatusEffect statusEffect;
     private Strategy strategy;
-    private float angelStatsModifier = 0f;
+    private ArrayList<Float> angelStatsModifier;
 
     private static final int XP_THRESHOLD = 250;
     private static final int XP_SCALING = 50;
@@ -39,6 +41,7 @@ public abstract class Hero {
         this.position = position;
         this.lastTotalDmg = 0.0f;
         this.statusEffect = new StatusEffect();
+        this.angelStatsModifier = new ArrayList<>();
     }
 
     /**
@@ -356,10 +359,16 @@ public abstract class Hero {
     }
 
     /**
+     * @param baseModifier The base damage modifier
      * @return The modifier percent of the current strategy
      */
-    public float getStatsModifier() {
-        return strategy.getModifiersPerc() + angelStatsModifier;
+    public float getStatsModifier(final float baseModifier) {
+        float stats = baseModifier;
+        stats += strategy.getModifiersPerc();
+        for (float stat : angelStatsModifier) {
+            stats += stat;
+        }
+        return stats;
     }
 
     /**
@@ -387,7 +396,7 @@ public abstract class Hero {
      * @param value The amount to increase
      */
     public void increaseStatsModifier(final float value) {
-        angelStatsModifier += value;
+        angelStatsModifier.add(value);
     }
 
     /**
@@ -395,7 +404,7 @@ public abstract class Hero {
      * @param value The amount to decrease
      */
     public void decreaseStatsModifier(final float value) {
-        angelStatsModifier -= value;
+        angelStatsModifier.add(-value);
     }
 
     /**

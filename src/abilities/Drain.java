@@ -40,7 +40,7 @@ public class Drain extends Ability {
     public void affect(final Knight target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage *= KNIGHT_BONUS + caster.getStatsModifier();
+        damage *= caster.getStatsModifier(KNIGHT_BONUS);
         target.takeDamage(Math.round(damage));
     }
 
@@ -51,7 +51,7 @@ public class Drain extends Ability {
     public void affect(final Pyromancer target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage *= PYROMANCER_BONUS + caster.getStatsModifier();
+        damage *= caster.getStatsModifier(PYROMANCER_BONUS);
         target.takeDamage(Math.round(damage));
     }
 
@@ -62,7 +62,7 @@ public class Drain extends Ability {
     public void affect(final Wizard target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage *= WIZARD_BONUS + caster.getStatsModifier();
+        damage *= caster.getStatsModifier(WIZARD_BONUS);
         target.takeDamage(Math.round(damage));
     }
 
@@ -73,7 +73,7 @@ public class Drain extends Ability {
     public void affect(final Rogue target) {
         float damage = attack(target);
         target.setLastTotalDamage(Math.round(damage));
-        damage *= ROGUE_BONUS + caster.getStatsModifier();
+        damage *= caster.getStatsModifier(ROGUE_BONUS);
         target.takeDamage(Math.round(damage));
     }
 }

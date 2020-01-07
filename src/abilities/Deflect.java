@@ -51,7 +51,7 @@ public class Deflect extends Ability {
     @Override
     public void affect(final Knight target) {
         float percent = attack(target);
-        percent *= KNIGHT_BONUS + caster.getStatsModifier();
+        percent *= caster.getStatsModifier(KNIGHT_BONUS);
         int damage = damage(percent);
         target.setLastTotalDamage(damage);
         target.takeDamage(damage);
@@ -63,7 +63,7 @@ public class Deflect extends Ability {
     @Override
     public void affect(final Pyromancer target) {
         float percent = attack(target);
-        percent *= PYROMANCER_BONUS + caster.getStatsModifier();
+        percent *= caster.getStatsModifier(PYROMANCER_BONUS);
         float damage = damage(percent);
         target.setLastTotalDamage(damage);
         target.takeDamage(Math.round(damage));
@@ -84,7 +84,7 @@ public class Deflect extends Ability {
     @Override
     public void affect(final Rogue target) {
         float percent = attack(target);
-        percent *= ROGUE_BONUS + caster.getStatsModifier();
+        percent *= caster.getStatsModifier(ROGUE_BONUS);
         int damage = damage(percent);
         target.setLastTotalDamage(damage);
         target.takeDamage(damage);
