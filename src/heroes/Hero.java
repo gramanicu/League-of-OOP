@@ -229,7 +229,6 @@ public abstract class Hero {
      * @param defeated The defeated player
      */
     public void won(final Hero defeated) {
-        GreatWizard.getInstance().playerKilled(this, defeated);
         int xpToAdd = Math.max(0, LVL_XP_BASE
                 - (this.getLevel() - defeated.getLevel()) * LVL_XP_SCALING);
 

@@ -166,16 +166,13 @@ final class Game {
 
             // If someone died
             if (firstAfter || secondAfter) {
-                if (!(firstAfter && secondAfter)) {
-                    if (firstAfter) {
-                        second.won(first);
-                    }
-
-                    if (secondAfter) {
-                        first.won(second);
-                    }
-                } else {
+                if (firstAfter) {
+                    second.won(first);
                     GreatWizard.getInstance().playerKilled(first, second);
+                }
+
+                if (secondAfter) {
+                    first.won(second);
                     GreatWizard.getInstance().playerKilled(second, first);
                 }
             }
