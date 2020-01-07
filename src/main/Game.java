@@ -169,12 +169,12 @@ final class Game {
                  int firstLvl = first.getLevel();
                  int secondLvl = second.getLevel();
 
-                if (firstAfter) {
-                    GreatWizard.getInstance().playerKilled(second, first);
-                }
-
                 if (secondAfter) {
                     GreatWizard.getInstance().playerKilled(first, second);
+                }
+
+                if (firstAfter) {
+                    GreatWizard.getInstance().playerKilled(second, first);
                 }
 
                 if (secondAfter) {
