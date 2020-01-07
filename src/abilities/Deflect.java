@@ -12,7 +12,7 @@ public class Deflect extends Ability {
     private static final float PERCENT_MAX = 0.7f;
     private static final float ROGUE_BONUS = 1.2f;
     private static final float KNIGHT_BONUS = 1.4f;
-    private static final float PYROMANCER_BONUS = 1.3f;;
+    private static final float PYROMANCER_BONUS = 1.3f;
 
     public Deflect(final Wizard hero) {
         caster = hero;
@@ -32,7 +32,7 @@ public class Deflect extends Ability {
     }
 
     private int damage(final float percent) {
-        float damage = 0.0f;
+        float damage;
         float lastDmg = caster.getLastTotalDmg();
         ((Wizard) caster).setDamageTotal(((Wizard) caster).getDamageTotal()
                 + lastDmg);
@@ -51,7 +51,7 @@ public class Deflect extends Ability {
     @Override
     public void affect(final Knight target) {
         float percent = attack(target);
-        percent *= (KNIGHT_BONUS + caster.getStatsModifier());
+        percent *= KNIGHT_BONUS + caster.getStatsModifier();
         int damage = damage(percent);
         target.setLastTotalDamage(damage);
         target.takeDamage(damage);
@@ -63,7 +63,7 @@ public class Deflect extends Ability {
     @Override
     public void affect(final Pyromancer target) {
         float percent = attack(target);
-        percent *= PYROMANCER_BONUS;
+        percent *= PYROMANCER_BONUS + caster.getStatsModifier();
         float damage = damage(percent);
         target.setLastTotalDamage(damage);
         target.takeDamage(Math.round(damage));
@@ -84,7 +84,7 @@ public class Deflect extends Ability {
     @Override
     public void affect(final Rogue target) {
         float percent = attack(target);
-        percent *= ROGUE_BONUS;
+        percent *= ROGUE_BONUS + caster.getStatsModifier();
         int damage = damage(percent);
         target.setLastTotalDamage(damage);
         target.takeDamage(damage);

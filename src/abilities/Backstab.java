@@ -44,7 +44,7 @@ public class Backstab extends Ability {
     public void affect(final Knight target) {
         float damage = attack(target);
         target.setLastTotalDamage(damage);
-        damage *= (KNIGHT_BONUS + caster.getStatsModifier());
+        damage *= KNIGHT_BONUS + caster.getStatsModifier();
         target.takeDamage(Math.round(damage));
     }
 
@@ -55,7 +55,7 @@ public class Backstab extends Ability {
     public void affect(final Pyromancer target) {
         float damage = attack(target);
         target.setLastTotalDamage(damage);
-        damage *= PYROMANCER_BONUS;
+        damage *= PYROMANCER_BONUS + caster.getStatsModifier();
         target.takeDamage(Math.round(damage));
     }
 
@@ -66,7 +66,7 @@ public class Backstab extends Ability {
     public void affect(final Wizard target) {
         float damage = attack(target);
         target.setLastTotalDamage(damage);
-        damage *= WIZARD_BONUS;
+        damage *= WIZARD_BONUS + caster.getStatsModifier();
         target.takeDamage(Math.round(damage));
     }
 
@@ -77,7 +77,7 @@ public class Backstab extends Ability {
     public void affect(final Rogue target) {
         float damage = attack(target);
         target.setLastTotalDamage(damage);
-        damage *= ROGUE_BONUS;
+        damage *= ROGUE_BONUS + caster.getStatsModifier();
         target.takeDamage(Math.round(damage));
     }
 }

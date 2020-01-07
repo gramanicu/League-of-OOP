@@ -1,6 +1,7 @@
 package main;
 
 import angels.Angel;
+import angels.AngelType;
 import angels.AngelsFactory;
 import heroes.Hero;
 import heroes.HeroesFactory;
@@ -14,18 +15,14 @@ import java.util.Scanner;
 
 final class Game {
     private ArrayList<Hero> players;
-    private ArrayList<Angel> angels;
     private ArrayList<ArrayList<Movement>> playerMovements;
     private ArrayList<ArrayList<Angel>> angelsToAdd;
     private int rounds;
     private int round;
     private static Game instance = null;
 
-    private static final int ANGEL_READ_PROPRIETES_COUNT = 3;
-
     private Game() {
         players = new ArrayList<>();
-        angels = new ArrayList<>();
         playerMovements = new ArrayList<>();
         angelsToAdd = new ArrayList<>();
     }
@@ -112,13 +109,12 @@ final class Game {
                 ArrayList<Angel> roundAngels = new ArrayList<>();
                 int angelCount = input.nextInt();
                 if (angelCount != 0) {
-                    String row = input.next();
-                    String[] parts = row.split(",");
                     for (int j = 0; j < angelCount; j++) {
-                        int multiplier = ANGEL_READ_PROPRIETES_COUNT;
-                        String angel = parts[j * multiplier];
-                        char x = parts[j * multiplier + 1].charAt(0);
-                        char y = parts[j * multiplier + 2].charAt(0);
+                        String row = input.next();
+                        String[] parts = row.split(",");
+                        String angel = parts[0];
+                        char x = parts[1].charAt(0);
+                        char y = parts[2].charAt(0);
                         Point point = new Point(Character.getNumericValue(x),
                                 Character.getNumericValue(y));
 
@@ -200,40 +196,24 @@ final class Game {
             movePlayers();
             fight();
             addAngels();
-            checkAngels();
-            removeAngels();
             round++;
         }
         GreatWizard.getInstance().printStats();
     }
 
     /**
-     * Remove angels at the end of the round.
-     */
-    void removeAngels() {
-        angels.clear();
-    }
-
-    /**
      * Spawn the angels.
      */
-    void addAngels() {
+    private void addAngels() {
         if (round < angelsToAdd.size()) {
             for (Angel angel : angelsToAdd.get(round)) {
-                angels.add(angel);
                 GreatWizard.getInstance().angelSpawned(angel);
-            }
-        }
-    }
-
-    /**
-     * Apply the angels effects.
-     */
-    void checkAngels() {
-        for (Angel angel : angels) {
-            for (Hero hero : players) {
-                if (hero.getPosition().equals(angel.getPosition())) {
-                    angel.apply(hero);
+                for (Hero hero : players) {
+                    if (hero.getPosition().equals(angel.getPosition())) {
+                        if (!hero.isDead() || angel.getType() == AngelType.Spawner) {
+                            angel.apply(hero);
+                        }
+                    }
                 }
             }
         }

@@ -52,7 +52,7 @@ public final class GreatWizard {
     }
 
     private static String getAngel(final AngelType angelType) {
-        String angel = "";
+        String angel;
         switch (angelType) {
             case DamageAngel:
                 angel = "DamageAngel";
@@ -91,7 +91,7 @@ public final class GreatWizard {
     }
 
     private static String getHero(final HeroType heroType) {
-        String hero = "";
+        String hero;
         switch (heroType) {
             case KNIGHT:
                 hero = "Knight";
@@ -201,7 +201,7 @@ public final class GreatWizard {
      */
     public void playerLevel(final Hero target, final int level) {
         String hero = getHero(target.getType());
-        String output = String.format("%s %d was reached lvl %d\n",
+        String output = String.format("%s %d reached level %d\n",
                 hero, target.getId(), level);
         try {
             fileWriter.write(output);
