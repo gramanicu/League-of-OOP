@@ -174,6 +174,9 @@ final class Game {
                     if (secondAfter) {
                         first.won(second);
                     }
+                } else {
+                    GreatWizard.getInstance().playerKilled(first, second);
+                    GreatWizard.getInstance().playerKilled(second, first);
                 }
             }
         }
